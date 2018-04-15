@@ -15,9 +15,20 @@ __global__ void addKernel(int *c, const int *a, const int *b)
 
 __global__ void matMultCuda(float *cu_C, float *cu_A, float *cu_B, unsigned int n) {
 
-	int i = threadIdx.x;
-	cu_C[i] += cu_A[i] * cu_B[i];
+	int col = (blockIdx.x * blockDim.x) + threadIdx.x;
+	int row = (blockIdx.y * blockDim.y) + threadIdx.y;
 
+	//Log row and col of each thread
+	printf("row : %d , col : %d \n", row, col);
+
+	int temp_sum = 0;
+
+	for (int elem = 0; elem < n; elem++)
+	{
+		temp_sum += cu_A[row * n + elem] * cu_B[elem * n + col];
+	}
+
+	cu_C[row * n + col] = temp_sum;
 };
 
 void matMultHost(float* h_A, float* h_B, float* h_C, int n) // n = m
@@ -119,9 +130,10 @@ int main()
 		exit(EXIT_FAILURE);
 	}
 
-	int num_blocks = 1;
-	int num_threads = 9;
-	matMultCuda <<<num_blocks, num_threads>>> (d_C, d_A, d_B, n);
+	// Use a Grid with one Block containing n * n Threads
+	dim3 threads_per_block(n, n);
+	dim3 blocks_per_grid(1, 1);
+	matMultCuda << <blocks_per_grid, threads_per_block >> >(d_C, d_A, d_B, n);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.

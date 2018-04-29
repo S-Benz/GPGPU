@@ -1,0 +1,431 @@
+#include "cuda_runtime.h"
+#include "device_launch_parameters.h"
+
+#include <stdio.h>
+#include<math.h>
+#include <cstdlib>
+
+//R,G,B Channels
+#define CHANNELS 3
+#define REDCHANNEL 'r'
+#define GREENCHANNEL 'g'
+#define BLUECHANNEL 'b'
+#define GRAYSCLAEREDCHANNEL 0.21
+#define GRAYSCLAEGREENCHANNEL 0.71
+#define GRAYSCLAEBLUECHANNEL 0.07
+
+//Kernel sobel function
+__global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+	int sobel_gradient_y, sobel_gradient_x, sobel_gradient;
+
+	if (x < *cu_image_width - 1 && x > 0 && y < *cu_image_height - 1 && y > 0) {
+	
+		int offset_dest = (y * (*cu_image_width) + x);
+
+		sobel_gradient_x = cu_src_image[(y - 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y - 1) * (*cu_image_width) + (x + 1)] +
+			2 * cu_src_image[(y) * (*cu_image_width) + (x - 1)] + -2 * cu_src_image[(y) * (*cu_image_width) + (x + 1)] +
+			cu_src_image[(y + 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x + 1)];
+	
+
+		sobel_gradient_y = cu_src_image[(y - 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x - 1)] +
+			2 * cu_src_image[(y - 1) * (*cu_image_width) + (x)] + -2 * cu_src_image[(y + 1) * (*cu_image_width) + (x)] +
+			cu_src_image[(y - 1) * (*cu_image_width) + (x + 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x + 1)];
+		
+		sobel_gradient = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
+
+		cu_dest_image[offset_dest] = (unsigned char) sobel_gradient;
+	}
+}
+
+//Kernel rgb to grayscale function
+__global__ void rgbToGrayscaleKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image) 
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+	unsigned char r, g, b, gray;
+
+	if (x < *cu_image_width && y < *cu_image_height) {
+		int grayOffset = (y * (*cu_image_width) + x);
+		int rgbOffset = grayOffset * CHANNELS;
+
+		b = cu_src_image[rgbOffset];
+		g = cu_src_image[rgbOffset + 1];
+		r = cu_src_image[rgbOffset + 2];
+
+		gray = 0.21 * r + 0.71 *g + 0.07 *b;
+
+		cu_dest_image[grayOffset] = gray;
+	}
+}
+
+//Kernel ColorChannel function
+__global__ void setColorChannelKernel(int *cu_image_width, int *cu_image_height,unsigned char *cu_src_image, unsigned char *cu_dest_image, unsigned char *cu_channel_to_keep)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+	unsigned char r, g, b;
+
+	if (x < *cu_image_width && y < *cu_image_height) {
+		int offset = (y * (*cu_image_width) + x) * CHANNELS;
+
+		switch (*cu_channel_to_keep)
+		{
+		case BLUECHANNEL:
+			b = cu_src_image[offset];
+			g = 0;
+			r = 0;
+			break;
+		case GREENCHANNEL:
+			b = 0; 
+			g = cu_src_image[offset +1];
+			r = 0; 
+			break;
+		case REDCHANNEL:
+			b = 0;
+			g = 0;
+			r = cu_src_image[offset +2];
+			break;
+		default: //Defaults to REDCHANNEL
+			b = 0;
+			g = 0;
+			r = cu_src_image[offset + 2];
+			break;
+		}
+
+		cu_dest_image[offset] = b; //B
+		cu_dest_image[offset + 1] = g; //G
+		cu_dest_image[offset + 2] = r; //R
+	}
+
+};
+
+void setColorChannel(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image, unsigned char channel_to_keep)
+{
+	int *d_image_width, *d_image_height;
+	unsigned char *d_src_image, *d_dest_image, *d_channel_to_keep;
+
+	unsigned int imgSize = (image_width * image_height) * CHANNELS * sizeof(unsigned char);
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMalloc((void **)&d_image_width, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &image_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaMalloc((void **)&d_image_height, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &image_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy channel to keep to gpu
+	err = cudaMalloc((void **)&d_channel_to_keep, sizeof(unsigned char));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_channel_to_keep, &channel_to_keep, sizeof(unsigned char), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaMalloc((void **)&d_src_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_src_image, src_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image dest to gpu
+	err = cudaMalloc((void **)&d_dest_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_dest_image, dest_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	double const threads = 16;
+	// Use a Grid with one Block containing 256 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Pro Grid N/256 Blöcke, n = Anzahl Elemente
+	dim3 blocks_per_grid((image_width/threads), (image_height/threads), 1);
+	setColorChannelKernel <<<blocks_per_grid, threads_per_block>>>(d_image_width, d_image_height, d_src_image, d_dest_image, d_channel_to_keep);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+	}
+
+	err = cudaMemcpy(dest_image, d_dest_image, imgSize, cudaMemcpyDeviceToHost);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	cudaFree(d_image_width);
+	cudaFree(d_image_height);
+	cudaFree(d_channel_to_keep);
+	cudaFree(d_src_image);
+	cudaFree(d_dest_image);
+}
+
+
+void rgbToGrayscale(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image)
+{
+	int *d_image_width, *d_image_height;
+	unsigned char *d_src_image, *d_dest_image;
+
+	unsigned int imgSizeRgb = (image_width * image_height) * CHANNELS * sizeof(unsigned char);
+	unsigned int imgSizeGray = (image_width * image_height) *  sizeof(unsigned char);
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMalloc((void **)&d_image_width, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &image_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaMalloc((void **)&d_image_height, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &image_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaMalloc((void **)&d_src_image, imgSizeRgb);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_src_image, src_image, imgSizeRgb, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image dest to gpu
+	err = cudaMalloc((void **)&d_dest_image, imgSizeGray);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	/*
+	err = cudaMemcpy(d_dest_image, dest_image, imgSizeGray, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	*/
+
+	double const threads = 16;
+	// Use a Grid with one Block containing 256 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Pro Grid N/256 Blöcke, n = Anzahl Elemente
+	dim3 blocks_per_grid((image_width / threads), (image_height / threads), 1);
+	rgbToGrayscaleKernel<<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+	}
+
+	err = cudaMemcpy(dest_image, d_dest_image, imgSizeGray, cudaMemcpyDeviceToHost);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	cudaFree(d_image_width);
+	cudaFree(d_image_height);
+	cudaFree(d_src_image);
+	cudaFree(d_dest_image);
+};
+
+void sobelFilter(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image)
+{
+	int *d_image_width, *d_image_height;
+	unsigned char *d_src_image, *d_dest_image;
+
+	unsigned int imgSize = (image_width * image_height) * sizeof(unsigned char);
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMalloc((void **)&d_image_width, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &image_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaMalloc((void **)&d_image_height, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &image_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaMalloc((void **)&d_src_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_src_image, src_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image dest to gpu
+	err = cudaMalloc((void **)&d_dest_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	
+	err = cudaMemcpy(d_dest_image, dest_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+	printf("%s in %s at line %d\n",
+	cudaGetErrorString(err), __FILE__, __LINE__);
+	exit(EXIT_FAILURE);
+	}
+
+
+	double const threads = 16;
+	// Use a Grid with one Block containing 256 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Pro Grid N/256 Blöcke, n = Anzahl Elemente
+	dim3 blocks_per_grid((image_width / threads), (image_height / threads), 1);
+	sobelFilterKernel <<<blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+	}
+
+	err = cudaMemcpy(dest_image, d_dest_image, imgSize, cudaMemcpyDeviceToHost);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	cudaFree(d_image_width);
+	cudaFree(d_image_height);
+	cudaFree(d_src_image);
+	cudaFree(d_dest_image);
+};

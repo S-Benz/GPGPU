@@ -23,7 +23,7 @@ int main(int, char**)
 		return -1;
 
 	Mat edges;
-	namedWindow("ColorChannelFilter", 1);
+	//namedWindow("ColorChannelFilter", 1);
 	namedWindow("Grayscale", 1);
 	namedWindow("Sobel", 1);
 
@@ -60,7 +60,7 @@ int main(int, char**)
 		rgbToGrayscale(grayscale.cols, grayscale.rows, frame.data, grayscale.data);
 		sobelFilter(grayscale.cols, grayscale.rows, grayscale.data, sobel.data);
 		//imshow("ColorChannelFilter", output);
-		imshow("Grayscale", grayscale);
+		//imshow("Grayscale", grayscale);
 		imshow("Sobel", sobel);
 		if (waitKey(1) >= 0) break;
 	}

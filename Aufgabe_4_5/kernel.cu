@@ -26,10 +26,10 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 	const int BLOCK_W = TILE_W + 2 * SOBEL_RADIUS;
 	const int BLOCK_H = TILE_H + 2 * SOBEL_RADIUS;
 
-	__shared__ char ds_Img[BLOCK_W * BLOCK_H];
+	__shared__ char ds_Img[TILE_H][TILE_W];
 
 	int bx = blockIdx.x; int by = blockIdx.y;
-	int tx = threadIdx.x; int ty = blockIdx.y;
+	int tx = threadIdx.x; int ty = threadIdx.y;
 
 	int sobel_x[3][3] = { 
 		{1, 0, -1}, 
@@ -42,8 +42,8 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 		{-1, -2, -1}
 	};
 
-	int x = bx * blockDim.x + tx - SOBEL_RADIUS; //cols
-	int y = by * blockDim.y + ty -SOBEL_RADIUS; //rows
+	int x = bx * blockDim.x + tx;// -SOBEL_RADIUS; //cols
+	int y = by * blockDim.y + ty;// -SOBEL_RADIUS; //rows
 
 	//Make sure x/y are not negative
 	if (x < 0) {
@@ -68,22 +68,24 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 
 		//Load Data into Shared Memory
 		//Insert 0 if the thread is supposed to fill the filter radius border of the tile
-		if (tx == 0 || ty == 0 || tx == *cu_image_width - 1 || ty == *cu_image_height - 1) {
+		/*if (tx == 0 || ty == 0 || tx == *cu_image_width - 1 || ty == *cu_image_height - 1) {
 			ds_Img[shared_index] = 0;
 		}
 		else {
 			ds_Img[shared_index] = cu_src_image[global_index];
 		}
+		*/
+		ds_Img[ty][tx] = cu_src_image[global_index];
 		__syncthreads();
 		
 		//Calc Sobel X & Y if the thread is inside the filter area
-		if (tx >= SOBEL_RADIUS && tx <= TILE_W &&
-			ty >= SOBEL_RADIUS && ty <= TILE_H ) {
+		if (tx >= SOBEL_RADIUS && tx < (TILE_W - SOBEL_RADIUS) &&
+			ty >= SOBEL_RADIUS && ty < (TILE_H - SOBEL_RADIUS) ) {
 			for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
 				for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
 					int tile_index = 0;
-					sobel_gradient_x += ds_Img[tile_index] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
-					sobel_gradient_y += ds_Img[tile_index] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+					sobel_gradient_x += ds_Img[ty + j][tx + k] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+					sobel_gradient_y += ds_Img[ty + j][tx + k] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
 				}
 			}
 

@@ -4,9 +4,10 @@
 #include "device_launch_parameters.h"
 #include <device_functions.h>
 #include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
 #include <cstdlib>
-
+#include <algorithm>
 //
 #define CHANNELS 3
 #define REDCHANNEL 'r'
@@ -17,33 +18,30 @@
 #define GRAYSCLAEBLUECHANNEL 0.07
 #define SOBEL_RADIUS 1
 #define TILE_W 16
-#define TILE_H 16
+#define BLOCK_W (TILE_W + 2*SOBEL_RADIUS)
 
 //Kernel sobel function
 __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
 {
-	//Width of the tile Block for filter including space for pixels not in the image
-	const int BLOCK_W = TILE_W + 2 * SOBEL_RADIUS;
-	const int BLOCK_H = TILE_H + 2 * SOBEL_RADIUS;
 
-	__shared__ char ds_Img[TILE_H][TILE_W];
+	__shared__ char ds_Img[BLOCK_W][BLOCK_W];
 
 	int bx = blockIdx.x; int by = blockIdx.y;
 	int tx = threadIdx.x; int ty = threadIdx.y;
 
-	int sobel_x[3][3] = { 
-		{1, 0, -1}, 
-		{2, 0, -2}, 
-		{1, 0, -1} 
+	int sobel_x[3][3] = {
+		{ 1, 0, -1 },
+		{ 2, 0, -2 },
+		{ 1, 0, -1 }
 	};
 	int sobel_y[3][3] = {
-		{1, 2, 1}, 
-		{0, 0, 0},
-		{-1, -2, -1}
+		{ 1, 2, 1 },
+		{ 0, 0, 0 },
+		{ -1, -2, -1 }
 	};
 
-	int x = bx * blockDim.x + tx;// -SOBEL_RADIUS; //cols
-	int y = by * blockDim.y + ty;// -SOBEL_RADIUS; //rows
+	int x = bx * TILE_W + tx -SOBEL_RADIUS; //cols
+	int y = by * TILE_W + ty -SOBEL_RADIUS; //rows
 
 	//Make sure x/y are not negative
 	if (x < 0) {
@@ -54,69 +52,37 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 		y = 0;
 	}
 
-	int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
+	//Calc index of global memory
+	int global_index = (y * (*cu_image_width) + x);
 
-	//Check if pixel is in image
-	if (x < *cu_image_width && y < *cu_image_height) {
-
-		//Calc index of global memory
-		int global_index = (y * (*cu_image_width) + x);
-			
-		//Calc index of shared memory
-		//TODO: RICHTIG berechnen
-		int shared_index = 0;
-
-		//Load Data into Shared Memory
-		//Insert 0 if the thread is supposed to fill the filter radius border of the tile
-		/*if (tx == 0 || ty == 0 || tx == *cu_image_width - 1 || ty == *cu_image_height - 1) {
-			ds_Img[shared_index] = 0;
-		}
-		else {
-			ds_Img[shared_index] = cu_src_image[global_index];
-		}
-		*/
+	//Load Data into Shared Memory
+	//Insert 0 if the thread is supposed to fill the filter radius border of the tile
+	if (x >= 0 && x < *cu_image_width - 1 && y >=  0 && y < *cu_image_height - 1) {
 		ds_Img[ty][tx] = cu_src_image[global_index];
-		__syncthreads();
-		
-		//Calc Sobel X & Y if the thread is inside the filter area
-		if (tx >= SOBEL_RADIUS && tx < (TILE_W - SOBEL_RADIUS) &&
-			ty >= SOBEL_RADIUS && ty < (TILE_H - SOBEL_RADIUS) ) {
-			for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
-				for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
-					int tile_index = 0;
-					sobel_gradient_x += ds_Img[ty + j][tx + k] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
-					sobel_gradient_y += ds_Img[ty + j][tx + k] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
-				}
-			}
-
-			//Calc Sobel magnitude and save it to the original image
-			sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
-		
-			cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
-		}
 	}
-	/*
-	if (x < *cu_image_width - 1 && x > 0 && y < *cu_image_height - 1 && y > 0) {
-	
-		int offset_dest = (y * (*cu_image_width) + x);
+	else {
+		ds_Img[ty][tx] = 0;
+	}
+	__syncthreads();
 
-		sobel_gradient_x = cu_src_image[(y - 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y - 1) * (*cu_image_width) + (x + 1)] +
-			2 * cu_src_image[(y) * (*cu_image_width) + (x - 1)] + -2 * cu_src_image[(y) * (*cu_image_width) + (x + 1)] +
-			cu_src_image[(y + 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x + 1)];
-	
-
-		sobel_gradient_y = cu_src_image[(y - 1) * (*cu_image_width) + (x - 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x - 1)] +
-			2 * cu_src_image[(y - 1) * (*cu_image_width) + (x)] + -2 * cu_src_image[(y + 1) * (*cu_image_width) + (x)] +
-			cu_src_image[(y - 1) * (*cu_image_width) + (x + 1)] + -cu_src_image[(y + 1) * (*cu_image_width) + (x + 1)];
-		
+	//Calc Sobel X & Y if the thread is inside the filter area
+	if ((tx >= SOBEL_RADIUS) && (tx <= TILE_W) &&
+		(ty >= SOBEL_RADIUS) && (ty <= TILE_W)){
+		int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
+		for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
+			for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
+				sobel_gradient_x += ds_Img[ty + j][tx + k] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+				sobel_gradient_y += ds_Img[ty + j][tx + k] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+			}
+		}
+		//Calc Sobel magnitude and save it to the original image
 		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
-
-		cu_dest_image[offset_dest] = (unsigned char) sobel_magnitude;
-	}*/
+		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
+	}
 }
 
 //Kernel rgb to grayscale function
-__global__ void rgbToGrayscaleKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image) 
+__global__ void rgbToGrayscaleKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
 {
 	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
 	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
@@ -137,7 +103,7 @@ __global__ void rgbToGrayscaleKernel(int *cu_image_width, int *cu_image_height, 
 }
 
 //Kernel ColorChannel function
-__global__ void setColorChannelKernel(int *cu_image_width, int *cu_image_height,unsigned char *cu_src_image, unsigned char *cu_dest_image, unsigned char *cu_channel_to_keep)
+__global__ void setColorChannelKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, unsigned char *cu_channel_to_keep)
 {
 	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
 	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
@@ -154,14 +120,14 @@ __global__ void setColorChannelKernel(int *cu_image_width, int *cu_image_height,
 			r = 0;
 			break;
 		case GREENCHANNEL:
-			b = 0; 
-			g = cu_src_image[offset +1];
-			r = 0; 
+			b = 0;
+			g = cu_src_image[offset + 1];
+			r = 0;
 			break;
 		case REDCHANNEL:
 			b = 0;
 			g = 0;
-			r = cu_src_image[offset +2];
+			r = cu_src_image[offset + 2];
 			break;
 		default: //Defaults to REDCHANNEL
 			b = 0;
@@ -271,8 +237,8 @@ void setColorChannel(int image_width, int image_height, unsigned char *src_image
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
 	//Pro Grid N/16 Blöcke, n = Anzahl Threads
-	dim3 blocks_per_grid((image_width - 1)/threads + 1, (image_height -1)/threads + 1, 1);
-	setColorChannelKernel <<<blocks_per_grid, threads_per_block>>>(d_image_width, d_image_height, d_src_image, d_dest_image, d_channel_to_keep);
+	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
+	setColorChannelKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image, d_channel_to_keep);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -302,7 +268,7 @@ void rgbToGrayscale(int image_width, int image_height, unsigned char *src_image,
 	unsigned char *d_src_image, *d_dest_image;
 
 	unsigned int imgSizeRgb = (image_width * image_height) * CHANNELS * sizeof(unsigned char);
-	unsigned int imgSizeGray = (image_width * image_height) *  sizeof(unsigned char);
+	unsigned int imgSizeGray = (image_width * image_height) * sizeof(unsigned char);
 
 	cudaError_t err = cudaSuccess;
 
@@ -365,21 +331,21 @@ void rgbToGrayscale(int image_width, int image_height, unsigned char *src_image,
 		exit(EXIT_FAILURE);
 	}
 
-	
+
 	err = cudaMemcpy(d_dest_image, dest_image, imgSizeGray, cudaMemcpyHostToDevice);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
-	
+
 
 	double const threads = 16;
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
 	//Pro Grid N/16 Blöcke, n = Anzahl Threads
 	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
-	rgbToGrayscaleKernel<<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
+	rgbToGrayscaleKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -469,21 +435,21 @@ void sobelFilter(int image_width, int image_height, unsigned char *src_image, un
 		exit(EXIT_FAILURE);
 	}
 
-	
+
 	err = cudaMemcpy(d_dest_image, dest_image, imgSize, cudaMemcpyHostToDevice);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
-		cudaGetErrorString(err), __FILE__, __LINE__);
+			cudaGetErrorString(err), __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
 
 
-	double const threads = 16;
+	double const threads = BLOCK_W;
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
 	//Pro Grid N/16 Blöcke, n = Anzahl Threads
-	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
-	sobelFilterKernel <<<blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
+	dim3 blocks_per_grid((image_width -1) / TILE_W + 1, (image_height - 1) / TILE_W + 1, 1);
+	sobelFilterKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.

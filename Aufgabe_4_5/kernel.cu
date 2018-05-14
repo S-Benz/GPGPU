@@ -21,7 +21,7 @@
 #define BLOCK_W (TILE_W + 2*SOBEL_RADIUS)
 
 //Kernel sobel function
-__global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
+__global__ void sobelFilterKernelTiled(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
 {
 
 	__shared__ char ds_Img[BLOCK_W][BLOCK_W];
@@ -40,8 +40,8 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 		{ -1, -2, -1 }
 	};
 
-	int x = bx * TILE_W + tx -SOBEL_RADIUS; //cols
-	int y = by * TILE_W + ty -SOBEL_RADIUS; //rows
+	int x = bx * TILE_W + tx - SOBEL_RADIUS; //cols
+	int y = by * TILE_W + ty - SOBEL_RADIUS; //rows
 
 	//Make sure x/y are not negative
 	if (x < 0) {
@@ -78,6 +78,46 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 		//Calc Sobel magnitude and save it to the original image
 		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
 		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
+	}
+}
+
+__global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
+{
+	int sobel_x[3][3] = {
+		{ 1, 0, -1 },
+		{ 2, 0, -2 },
+		{ 1, 0, -1 }
+	};
+	int sobel_y[3][3] = {
+		{ 1, 2, 1 },
+		{ 0, 0, 0 },
+		{ -1, -2, -1 }
+	};
+
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+
+	//Calc index
+	int global_index = (y * (*cu_image_width) + x);
+
+	if (x >= SOBEL_RADIUS && x < *cu_image_width - 1 && y >= SOBEL_RADIUS && y < *cu_image_height - 1) {
+		//Calc Sobel X & Y if the thread is inside the filter area
+		int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
+
+		for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
+			for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
+				sobel_gradient_x += cu_src_image[(y + j) * (*cu_image_width) + (x + k)] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+				sobel_gradient_y += cu_src_image[(y + j) * (*cu_image_width) + (x + k)] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+			}
+		}
+
+		//Calc Sobel magnitude and save it to the image
+		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
+
+		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
+	}
+	else {
+		cu_dest_image[global_index] = 0;
 	}
 }
 
@@ -444,12 +484,18 @@ void sobelFilter(int image_width, int image_height, unsigned char *src_image, un
 	}
 
 
-	double const threads = BLOCK_W;
+	double const threads = 16;
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
-	//Pro Grid N/16 Blöcke, n = Anzahl Threads
-	dim3 blocks_per_grid((image_width -1) / TILE_W + 1, (image_height - 1) / TILE_W + 1, 1);
-	sobelFilterKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
+	//Per Grid N/16 Blocks
+	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
+	sobelFilterKernel <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
+
+	// Use a Grid with one Block containing Block_width threads
+	//dim3 threads_per_block_tiled(BLOCK_W, BLOCK_W, 1);
+	//Per Grid N/Tile_wisth blocks
+	//dim3 blocks_per_grid_tiled((image_width -1) / TILE_W + 1, (image_height - 1) / TILE_W + 1, 1);
+	//sobelFilterKernelTiled <<<blocks_per_grid_tiled, threads_per_block_tiled >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.

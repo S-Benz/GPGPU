@@ -19,6 +19,29 @@
 #define SOBEL_RADIUS 1
 #define TILE_W 16
 #define BLOCK_W (TILE_W + 2*SOBEL_RADIUS)
+#define ANGLE 50
+
+
+__global__ void sobelFilterTexture(int *cu_image_width, int *cu_image_height, float *cu_output, cudaTextureObject_t cu_texObj, float theta)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x;
+	int y = blockIdx.y * blockDim.y + threadIdx.y;
+
+	//Calc normalized texture coordinates
+	float u = x / (float) *cu_image_width;
+	float v = y / (float)*cu_image_height;
+
+	// Transfrm coordinates
+	u -= 0.5f;
+	v -= 0.5f;
+
+	float tu = u * cosf(theta) - v * sinf(theta) + 0.5f;
+	float tv = v * sinf(theta) + u * cosf(theta) + 0.5f;
+
+	// Read from texture and write to global memory
+	cu_output[y * *cu_image_width + x] = tex2D<float>(cu_texObj, tu, tv);
+
+};
 
 //Kernel sobel function
 __global__ void sobelFilterKernelTiled(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
@@ -483,19 +506,12 @@ void sobelFilter(int image_width, int image_height, unsigned char *src_image, un
 		exit(EXIT_FAILURE);
 	}
 
-
-	//double const threads = 16;
+	unsigned int threads = 16;
 	// Use a Grid with one Block containing 16x16 Threads
-	//dim3 threads_per_block(threads, threads, 1);
+	dim3 threads_per_block(threads, threads, 1);
 	//Per Grid N/16 Blocks
-	//dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
-	//sobelFilterKernel <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
-
-	// Use a Grid with one Block containing Block_width threads
-	dim3 threads_per_block_tiled(BLOCK_W, BLOCK_W, 1);
-	//Per Grid N/Tile_wisth blocks
-	dim3 blocks_per_grid_tiled((image_width -1) / TILE_W + 1, (image_height - 1) / TILE_W + 1, 1);
-	sobelFilterKernelTiled <<<blocks_per_grid_tiled, threads_per_block_tiled >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
+	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
+	sobelFilterKernel <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, d_src_image, d_dest_image);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -516,4 +532,231 @@ void sobelFilter(int image_width, int image_height, unsigned char *src_image, un
 	cudaFree(d_image_height);
 	cudaFree(d_src_image);
 	cudaFree(d_dest_image);
+};
+
+void sobelFilterShared(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image)
+{
+	int *d_image_width, *d_image_height;
+	unsigned char *d_src_image, *d_dest_image;
+
+	unsigned int imgSize = (image_width * image_height) * sizeof(unsigned char);
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMalloc((void **)&d_image_width, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &image_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaMalloc((void **)&d_image_height, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &image_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaMalloc((void **)&d_src_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_src_image, src_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image dest to gpu
+	err = cudaMalloc((void **)&d_dest_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+
+	err = cudaMemcpy(d_dest_image, dest_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	// Use a Grid with one Block containing Block_width threads
+	dim3 threads_per_block_tiled(BLOCK_W, BLOCK_W, 1);
+	//Per Grid N/Tile_wisth blocks
+	dim3 blocks_per_grid_tiled((image_width - 1) / TILE_W + 1, (image_height - 1) / TILE_W + 1, 1);
+	sobelFilterKernelTiled << <blocks_per_grid_tiled, threads_per_block_tiled >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(dest_image, d_dest_image, imgSize, cudaMemcpyDeviceToHost);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	cudaFree(d_image_width);
+	cudaFree(d_image_height);
+	cudaFree(d_src_image);
+	cudaFree(d_dest_image);
+};
+
+void sobelFilterTexture(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image)
+{
+	int *d_image_width, *d_image_height;
+
+	unsigned int imgSize = (image_width * image_height) * sizeof(unsigned char);
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Create ChannelDesc
+	//Sets output format of the value when the texture is fetched i.e. float texel
+	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc(32, 0, 0, 0, cudaChannelFormatKindFloat);
+	
+	//Create cuda array
+	cudaArray* cuArray;
+	
+	//Allocate cuda array
+	err = cudaMallocArray(&cuArray, &channelDesc, image_width, image_height);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image data to cuda array
+	err = cudaMemcpyToArray(cuArray, 0, 0, src_image, image_width * image_height * sizeof(float), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Set Texture
+	struct cudaResourceDesc resDesc;
+	memset(&resDesc, 0, sizeof(resDesc));
+	resDesc.resType = cudaResourceTypeArray;
+	resDesc.res.array.array = cuArray;
+
+	//Set Texture object params
+	struct cudaTextureDesc textDesc;
+	memset(&textDesc, 0, sizeof(textDesc));
+	textDesc.addressMode[0] = cudaAddressModeWrap;
+	textDesc.addressMode[1] = cudaAddressModeWrap;
+	textDesc.filterMode = cudaFilterModeLinear;
+	textDesc.readMode = cudaReadModeElementType;
+	textDesc.normalizedCoords = 1;
+
+	//Create Texture Object
+	cudaTextureObject_t texObj = 0;
+	cudaCreateTextureObject(&texObj, &resDesc, &textDesc, NULL);
+
+	float *output;
+	err = cudaMalloc(&output, image_height * image_width * sizeof(float));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	//
+
+	err = cudaMalloc((void **)&d_image_width, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &image_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaMalloc((void **)&d_image_height, sizeof(int));
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &image_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	unsigned int threads = 16;
+	// Use a Grid with one Block containing 16x16 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Per Grid N/16 Blocks
+	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
+	sobelFilterTexture <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, output, texObj);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(dest_image, output, imgSize, cudaMemcpyDeviceToHost);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	cudaFree(d_image_width);
+	cudaFree(d_image_height);
+	cudaDestroyTextureObject(texObj);
+	cudaFreeArray(cuArray);
+	cudaFree(output);
 };

@@ -5,9 +5,9 @@
 #include <device_functions.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <memory.h>
 #include <math.h>
 #include <cstdlib>
-#include <algorithm>
 //
 #define CHANNELS 3
 #define REDCHANNEL 'r'
@@ -22,24 +22,49 @@
 #define ANGLE 50
 
 
-__global__ void sobelFilterTexture(int *cu_image_width, int *cu_image_height, float *cu_output, cudaTextureObject_t cu_texObj, float theta)
+__global__ void sobelFilterTexture(int *cu_image_width, int *cu_image_height, unsigned char *cu_output, cudaTextureObject_t cu_texObj, float theta)
 {
+	int sobel_x[3][3] = {
+		{ 1, 0, -1 },
+		{ 2, 0, -2 },
+		{ 1, 0, -1 }
+	};
+	int sobel_y[3][3] = {
+		{ 1, 2, 1 },
+		{ 0, 0, 0 },
+		{ -1, -2, -1 }
+	};
+
 	int x = blockIdx.x * blockDim.x + threadIdx.x;
 	int y = blockIdx.y * blockDim.y + threadIdx.y;
 
-	//Calc normalized texture coordinates
-	float u = x / (float) *cu_image_width;
-	float v = y / (float)*cu_image_height;
+	if (x < *cu_image_width - 1 &&  y < *cu_image_height - 1) {
+		//Calc Sobel X & Y if the thread is inside the filter area
+		int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
 
-	// Transfrm coordinates
-	u -= 0.5f;
-	v -= 0.5f;
+		for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
+			for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
+				//Calc normalized texture coordinates
+				float u = (x + k) / (float)*cu_image_width;
+				float v = (y + j) / (float)*cu_image_height;
 
-	float tu = u * cosf(theta) - v * sinf(theta) + 0.5f;
-	float tv = v * sinf(theta) + u * cosf(theta) + 0.5f;
+				// Transfrm coordinates
+				u -= 0.5f;
+				v -= 0.5f;
 
-	// Read from texture and write to global memory
-	cu_output[y * *cu_image_width + x] = tex2D<float>(cu_texObj, tu, tv);
+				float tu = u * cosf(theta) - v * sinf(theta) + 0.5f;
+				float tv = v * cosf(theta) + u * sinf(theta) + 0.5f;
+
+				sobel_gradient_x += tex2D<float>(cu_texObj, tu, tv) * 255 * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+				sobel_gradient_y += tex2D<float>(cu_texObj, tu, tv) * 255 * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+			}
+		}
+
+		//Calc Sobel magnitude and save it to the image
+		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
+
+		cu_output[y * *cu_image_width + x] = (unsigned char)sobel_magnitude;
+	}
 
 };
 
@@ -655,10 +680,10 @@ void sobelFilterTexture(int image_width, int image_height, unsigned char *src_im
 
 	//Create ChannelDesc
 	//Sets output format of the value when the texture is fetched i.e. float texel
-	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc(32, 0, 0, 0, cudaChannelFormatKindFloat);
+	cudaChannelFormatDesc channelDesc = cudaCreateChannelDesc(8, 0, 0, 0, cudaChannelFormatKindUnsigned);
 	
 	//Create cuda array
-	cudaArray* cuArray;
+	cudaArray *cuArray;
 	
 	//Allocate cuda array
 	err = cudaMallocArray(&cuArray, &channelDesc, image_width, image_height);
@@ -669,7 +694,7 @@ void sobelFilterTexture(int image_width, int image_height, unsigned char *src_im
 	}
 
 	//Copy image data to cuda array
-	err = cudaMemcpyToArray(cuArray, 0, 0, src_image, image_width * image_height * sizeof(float), cudaMemcpyHostToDevice);
+	err = cudaMemcpyToArray(cuArray, 0, 0, src_image, image_height * image_width * sizeof(unsigned char), cudaMemcpyHostToDevice);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
@@ -685,18 +710,18 @@ void sobelFilterTexture(int image_width, int image_height, unsigned char *src_im
 	//Set Texture object params
 	struct cudaTextureDesc textDesc;
 	memset(&textDesc, 0, sizeof(textDesc));
-	textDesc.addressMode[0] = cudaAddressModeWrap;
-	textDesc.addressMode[1] = cudaAddressModeWrap;
+	textDesc.addressMode[0] = cudaAddressModeMirror;
+	textDesc.addressMode[1] = cudaAddressModeMirror;
 	textDesc.filterMode = cudaFilterModeLinear;
-	textDesc.readMode = cudaReadModeElementType;
+	textDesc.readMode = cudaReadModeNormalizedFloat;
 	textDesc.normalizedCoords = 1;
 
 	//Create Texture Object
 	cudaTextureObject_t texObj = 0;
 	cudaCreateTextureObject(&texObj, &resDesc, &textDesc, NULL);
 
-	float *output;
-	err = cudaMalloc(&output, image_height * image_width * sizeof(float));
+	unsigned char *output;
+	err = cudaMalloc(&output, image_height * image_width * sizeof(unsigned char));
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
@@ -731,13 +756,13 @@ void sobelFilterTexture(int image_width, int image_height, unsigned char *src_im
 			cudaGetErrorString(err), __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
-
+	float angle = 0;
 	unsigned int threads = 16;
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
 	//Per Grid N/16 Blocks
 	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
-	sobelFilterTexture <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, output, texObj);
+	sobelFilterTexture <<<blocks_per_grid, threads_per_block >>>(d_image_width, d_image_height, output, texObj, angle);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.

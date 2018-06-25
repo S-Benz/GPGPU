@@ -25,7 +25,7 @@ int main(int, char**)
 	Mat edges;
 	//namedWindow("ColorChannelFilter", 1);
 	namedWindow("Grayscale", 1);
-	namedWindow("Sobel", 1);
+	//namedWindow("Sobel", 1);
 
 	for (;;)
 	{

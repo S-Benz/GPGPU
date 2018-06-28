@@ -23,16 +23,122 @@
 #define ANGLE 50
 #define HISTOGRAMMSIZE 256
 
-//Kernel rgb to grayscale function with streams
-__global__ void rgbToGrayscaleKernelStream(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int offset_x, int offset_y)
+__global__ void sobelFilterKernelTiledStreams(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int sobel_offset)
 {
-	int x = blockIdx.x * blockDim.x + threadIdx.x + offset_x; //cols
-	int y = blockIdx.y * blockDim.y + threadIdx.y + offset_y; //rows
+
+	__shared__ char ds_Img[BLOCK_W][BLOCK_W];
+
+	int bx = blockIdx.x; int by = blockIdx.y;
+	int tx = threadIdx.x; int ty = threadIdx.y;
+
+	int sobel_x[3][3] = {
+		{ 1, 0, -1 },
+		{ 2, 0, -2 },
+		{ 1, 0, -1 }
+	};
+	int sobel_y[3][3] = {
+		{ 1, 2, 1 },
+		{ 0, 0, 0 },
+		{ -1, -2, -1 }
+	};
+
+	int x = bx * TILE_W + tx - SOBEL_RADIUS; //cols
+	int y = by * TILE_W + ty - SOBEL_RADIUS; //rows
+
+											 //Make sure x/y are not negative
+	if (x < 0) {
+		x = 0;
+	}
+
+	if (y < 0) {
+		y = 0;
+	}
+
+	//Calc index of global memory
+	int global_index = sobel_offset + (y * (*cu_image_width) + x);
+
+	//Load Data into Shared Memory
+	//Insert 0 if the thread is supposed to fill the filter radius border of the tile
+	if (x >= 0 && x < *cu_image_width - 1 && y >= 0 && y < *cu_image_height - 1) {
+		ds_Img[ty][tx] = cu_src_image[global_index];
+	}
+	else {
+		if (x < *cu_image_width && y < *cu_image_height) {
+			ds_Img[ty][tx] = 0;
+		}
+	}
+	__syncthreads();
+
+	//Calc Sobel X & Y if the thread is inside the filter area
+	if ((tx >= SOBEL_RADIUS) && (tx <= TILE_W) &&
+		(ty >= SOBEL_RADIUS) && (ty <= TILE_W)) {
+		int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
+		for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
+			for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
+				sobel_gradient_x += ds_Img[ty + j][tx + k] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+				sobel_gradient_y += ds_Img[ty + j][tx + k] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+			}
+		}
+		//Calc Sobel magnitude and save it to the original image
+		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
+		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
+	}
+}
+
+__global__ void sobelFilterKernelStreams(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int offset_sobel)
+{
+	int sobel_x[3][3] = {
+		{ 1, 0, -1 },
+		{ 2, 0, -2 },
+		{ 1, 0, -1 }
+	};
+	int sobel_y[3][3] = {
+		{ 1, 2, 1 },
+		{ 0, 0, 0 },
+		{ -1, -2, -1 }
+	};
+
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+
+												   //Calc index
+	int global_index = offset_sobel + (y * (*cu_image_width) + x);
+
+	if (x >= SOBEL_RADIUS && x < *cu_image_width - 1 && y >= SOBEL_RADIUS && y < *cu_image_height - 1) {
+		//Calc Sobel X & Y if the thread is inside the filter area
+		int sobel_gradient_y = 0, sobel_gradient_x = 0, sobel_magnitude = 0;
+
+		for (int j = -SOBEL_RADIUS; j <= SOBEL_RADIUS; j++) {
+			for (int k = -SOBEL_RADIUS; k <= SOBEL_RADIUS; k++) {
+				int sobel_index = offset_sobel + (y + j) * (*cu_image_width) + (x + k);
+				sobel_gradient_x += cu_src_image[sobel_index] * sobel_x[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+				sobel_gradient_y += cu_src_image[sobel_index] * sobel_y[j + SOBEL_RADIUS][k + SOBEL_RADIUS];
+			}
+		}
+
+		//Calc Sobel magnitude and save it to the image
+		sobel_magnitude = (int)sqrt((float)pow((float)sobel_gradient_x, 2) + (float)pow((float)sobel_gradient_y, 2));
+
+		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
+	}
+	else {
+		if (x < *cu_image_width && y < *cu_image_height) {
+			cu_dest_image[global_index] = 0;
+		}
+	}
+}
+
+//Kernel rgb to grayscale function with streams
+__global__ void rgbToGrayscaleKernelStream(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int offset_rgb, int offset_gray)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
 	unsigned char r, g, b, gray;
 
 	if (x < *cu_image_width && y < *cu_image_height) {
-		int grayOffset = (y * (*cu_image_width) + x);
-		int rgbOffset = grayOffset * CHANNELS;
+		int offset = (y * (*cu_image_width) + x);
+		int grayOffset =  offset + offset_gray;
+		int rgbOffset = offset_rgb + offset  * CHANNELS;
 
 		b = cu_src_image[rgbOffset];
 		g = cu_src_image[rgbOffset + 1];
@@ -1013,12 +1119,20 @@ void streamAufgabe5(int image_width, int image_height, unsigned char *src_image,
 
 	//Kernel vars
 	unsigned int threads = 16;
-	int stream_width = image_width / stream_count;
+	int stream_width = image_width;
 	int stream_height = image_height / stream_count;
 	int stream_size = stream_width * stream_height;
+	int stream_size_gray = stream_size * sizeof(unsigned char);
+	int stream_size_rgb = stream_size * CHANNELS * sizeof(unsigned char);
+
+	//tiled sobel
+	dim3 threads_per_block_tiled(BLOCK_W, BLOCK_W, 1);
+	//Per Grid N/Tile_wisth blocks
+	dim3 blocks_per_grid_tiled((stream_width - 1) / TILE_W + 1, (stream_height - 1) / TILE_W + 1, 1);
+	
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
-	//Pro Grid N/16 Blöcke, n = Anzahl Threads
+	//Pro Grid N/16 Blöcke
 	dim3 blocks_per_grid((stream_width - 1) / threads + 1, (stream_height - 1) / threads + 1, 1);
 
 	cudaStream_t streams[stream_count];
@@ -1095,6 +1209,13 @@ void streamAufgabe5(int image_width, int image_height, unsigned char *src_image,
 		exit(EXIT_FAILURE);
 	}
 
+	err = cudaHostAlloc((void **)&d_dest_image_sobel, imgSizeGray, cudaHostAllocDefault);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
 	//Create cuda Streams & memory for each stream
 	for (int i = 0; i < stream_count; i++) {
 		//Create cuda Streams
@@ -1110,42 +1231,73 @@ void streamAufgabe5(int image_width, int image_height, unsigned char *src_image,
 	//fill memory
 	for (int i = 0; i < stream_count; i++) {
 		//calc offset for memory copy
-		int offset = i * stream_size;
+		int offset_gray = i * stream_size;
+		int offset_rgb = offset_gray * CHANNELS;
 
 		//copy memory for each stream
-		err = cudaMemcpyAsync(&d_src_image[offset], &src_image[offset], stream_size * CHANNELS * sizeof(unsigned char), cudaMemcpyHostToDevice, streams[i]);
+		err = cudaMemcpyAsync(&d_src_image[offset_rgb], &src_image[offset_rgb], stream_size_rgb, cudaMemcpyHostToDevice, streams[i]);
 		if (err != cudaSuccess) {
 			printf("%s in %s at line %d\n",
 				cudaGetErrorString(err), __FILE__, __LINE__);
 			exit(EXIT_FAILURE);
 		}
 
-		err = cudaMemcpyAsync(&d_dest_image[offset], &dest_image[offset], stream_size * sizeof(unsigned char), cudaMemcpyHostToDevice, streams[i]);
+		err = cudaMemcpyAsync(&d_dest_image[offset_gray], &dest_image[offset_gray], stream_size_gray, cudaMemcpyHostToDevice, streams[i]);
 		if (err != cudaSuccess) {
 			printf("%s in %s at line %d\n",
 				cudaGetErrorString(err), __FILE__, __LINE__);
 			exit(EXIT_FAILURE);
 		}
+
+		err = cudaMemcpyAsync(&d_dest_image_sobel[offset_gray], &dest_image[offset_gray], stream_size_gray, cudaMemcpyHostToDevice, streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+
+
 	}
 
-	//execute kernels
+	//execute kernel for grayscale
 	for (int i = 0; i < stream_count; i++) {
-		int offset_x = i * stream_width;
-		int offset_y = i * stream_height;
-		//printf("offset_x: %d, offset_y: %d \n", offset_x, offset_y);
-		rgbToGrayscaleKernelStream<<<blocks_per_grid, threads_per_block, 0, streams[i]>>>(d_image_width, d_image_height, d_src_image, d_dest_image, offset_x, offset_y);	
+		int offset_gray = i * stream_size;
+		int offset_rgb = offset_gray * CHANNELS;
+
+		rgbToGrayscaleKernelStream<<<blocks_per_grid, threads_per_block, 0, streams[i]>>>(d_image_width, d_image_height, d_src_image, d_dest_image, offset_rgb, offset_gray);	
 	}
 
-	err = cudaDeviceSynchronize();
-	if (err != cudaSuccess) {
+	for (int i = 0; i < stream_count; i++) {
+		err = cudaStreamSynchronize(streams[i]);
+		if (err != cudaSuccess) {
 			printf("%s in %s at line %d\n",
 				cudaGetErrorString(err), __FILE__, __LINE__);
 			exit(EXIT_FAILURE);
+		}
 	}
 
+	//execute kernel for sobel
+	for (int i = 0; i < stream_count; i++) {
+		int offset_sobel = i * stream_size;
+
+		//sobelFilterKernelStreams<<<blocks_per_grid, threads_per_block, 0, streams[i]>>>(d_image_width, d_image_height, d_dest_image, d_dest_image_sobel, offset_sobel);
+		sobelFilterKernelTiledStreams<<<blocks_per_grid_tiled, threads_per_block_tiled, 0, streams[i] >> >(d_image_width, d_image_height, d_dest_image, d_dest_image_sobel, offset_sobel);
+	}
+
+	for (int i = 0; i < stream_count; i++) {
+		err = cudaStreamSynchronize(streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	// Save grayscale data
 	for (int i = 0; i < stream_count; i++) {
 		int offset = i * stream_size;
-		err = cudaMemcpyAsync(&dest_image[offset], &d_dest_image[offset], stream_size * sizeof(unsigned char), cudaMemcpyDeviceToHost, streams[i]);
+		//printf("offset: %d\n", offset);
+		err = cudaMemcpyAsync(&dest_image[offset], &d_dest_image_sobel[offset], stream_size_gray, cudaMemcpyDeviceToHost, streams[i]);
 		if (err != cudaSuccess) {
 			printf("%s in %s at line %d\n",
 				cudaGetErrorString(err), __FILE__, __LINE__);
@@ -1158,6 +1310,7 @@ void streamAufgabe5(int image_width, int image_height, unsigned char *src_image,
 	cudaFreeHost(d_image_height);
 	cudaFreeHost(d_src_image);
 	cudaFreeHost(d_dest_image);
+	cudaFreeHost(d_dest_image_sobel);
 
 	for (int i = 0; i < stream_count; i++) {
 		cudaStreamDestroy(streams[i]);

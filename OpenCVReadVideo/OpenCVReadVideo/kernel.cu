@@ -23,6 +23,28 @@
 #define ANGLE 50
 #define HISTOGRAMMSIZE 256
 
+//Kernel rgb to grayscale function with streams
+__global__ void rgbToGrayscaleKernelStream(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int offset_rgb, int offset_gray)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+	unsigned char r, g, b, gray;
+
+	if (x < *cu_image_width && y < *cu_image_height) {
+		int offset = (y * (*cu_image_width) + x);
+		int grayOffset =  offset + offset_gray;
+		int rgbOffset = offset_rgb + offset  * CHANNELS;
+
+		b = cu_src_image[rgbOffset];
+		g = cu_src_image[rgbOffset + 1];
+		r = cu_src_image[rgbOffset + 2];
+
+		gray = 0.21 * r + 0.71 *g + 0.07 *b;
+
+		cu_dest_image[grayOffset] = gray;
+	}
+}
+
 __global__ void getHistogrammTiledKernel(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned int *cu_dest_histogramm) {
 
 	__shared__ unsigned int smem[HISTOGRAMMSIZE];
@@ -234,7 +256,9 @@ __global__ void sobelFilterKernel(int *cu_image_width, int *cu_image_height, uns
 		cu_dest_image[global_index] = (unsigned char)sobel_magnitude;
 	}
 	else {
-		cu_dest_image[global_index] = 0;
+		if (x < *cu_image_width && y < *cu_image_height) {
+			cu_dest_image[global_index] = 0;
+		}
 	}
 }
 
@@ -502,7 +526,7 @@ void rgbToGrayscale(int image_width, int image_height, unsigned char *src_image,
 	dim3 threads_per_block(threads, threads, 1);
 	//Pro Grid N/16 Blöcke, n = Anzahl Threads
 	dim3 blocks_per_grid((image_width - 1) / threads + 1, (image_height - 1) / threads + 1, 1);
-	rgbToGrayscaleKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
+	//rgbToGrayscaleKernel << <blocks_per_grid, threads_per_block >> >(d_image_width, d_image_height, d_src_image, d_dest_image);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -973,4 +997,178 @@ void getHistogramm(int image_width, int image_height, unsigned char *src_image)
 	cudaFree(d_image_width);
 	cudaFree(d_image_height);
 	cudaFree(d_src_image);
+};
+
+
+void streamAufgabe5(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image)
+{
+	int *d_image_width, *d_image_height;
+	unsigned char *d_src_image, *d_dest_image;// , *d_dest_image_sobel;
+
+	unsigned int imgSize = image_width * image_height;
+	unsigned int imgSizeRgb = imgSize * CHANNELS * sizeof(unsigned char);
+	unsigned int imgSizeGray = imgSize * sizeof(unsigned char);
+	
+	//Cuda Stream vars
+	const unsigned int stream_count = 4;
+
+	//Kernel vars
+	unsigned int threads = 16;
+	int stream_width = image_width;
+	int stream_height = image_height / stream_count;
+	int stream_size = stream_width * stream_height;
+	int stream_size_gray = stream_size * sizeof(unsigned char);
+	int stream_size_rgb = stream_size * CHANNELS * sizeof(unsigned char);
+	
+	// Use a Grid with one Block containing 16x16 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Pro Grid N/16 Blöcke
+	dim3 blocks_per_grid((stream_width - 1) / threads + 1, (stream_height - 1) / threads + 1, 1);
+
+	cudaStream_t streams[stream_count];
+
+	int dev_count;
+	cudaDeviceProp prop;
+
+	cudaError_t err = cudaSuccess;
+
+	//Enable device Overlap
+	err = cudaGetDeviceCount(&dev_count);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Set device to a device with overlap property
+	for (int i = 0; i < dev_count; i++) {
+		cudaGetDeviceProperties(&prop, i);
+
+		if (prop.deviceOverlap) {
+			err = cudaSetDevice(i);
+			if (err != cudaSuccess) {
+				printf("%s in %s at line %d\n",
+					cudaGetErrorString(err), __FILE__, __LINE__);
+				exit(EXIT_FAILURE);
+			}
+
+		}
+	}
+	
+	err = cudaHostAlloc((void **)&d_image_width, sizeof(int), cudaHostAllocDefault);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+	err = cudaMemcpy(d_image_width, &stream_width, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image height to gpu
+	err = cudaHostAlloc((void **)&d_image_height, sizeof(int), cudaHostAllocDefault);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_image_height, &stream_height, sizeof(int), cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaHostAlloc((void **)&d_src_image, imgSizeRgb, cudaHostAllocDefault);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Alloc memory for grayscale image
+	err = cudaHostAlloc((void **)&d_dest_image, imgSizeGray, cudaHostAllocDefault);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Create cuda Streams & memory for each stream
+	for (int i = 0; i < stream_count; i++) {
+		//Create cuda Streams
+		err = cudaStreamCreate(&streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+		
+	}
+
+	//fill memory
+	for (int i = 0; i < stream_count; i++) {
+		//calc offset for memory copy
+		int offset_gray = i * stream_size;
+		int offset_rgb = offset_gray * CHANNELS;
+
+		//copy memory for each stream
+		err = cudaMemcpyAsync(&d_src_image[offset_rgb], &src_image[offset_rgb], stream_size_rgb, cudaMemcpyHostToDevice, streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+
+		err = cudaMemcpyAsync(&d_dest_image[offset_gray], &dest_image[offset_gray], stream_size_gray, cudaMemcpyHostToDevice, streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	//execute kernels
+	for (int i = 0; i < stream_count; i++) {
+		int offset_gray = i * stream_size;
+		int offset_rgb = offset_gray * CHANNELS;
+
+		rgbToGrayscaleKernelStream<<<blocks_per_grid, threads_per_block, 0, streams[i]>>>(d_image_width, d_image_height, d_src_image, d_dest_image, offset_rgb, offset_gray);	
+	}
+
+	for (int i = 0; i < stream_count; i++) {
+		err = cudaStreamSynchronize(streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+	}
+
+	for (int i = 0; i < stream_count; i++) {
+		int offset = i * stream_size;
+		//printf("offset: %d\n", offset);
+		err = cudaMemcpyAsync(&dest_image[offset], &d_dest_image[offset], stream_size_gray, cudaMemcpyDeviceToHost, streams[i]);
+		if (err != cudaSuccess) {
+			printf("%s in %s at line %d\n",
+				cudaGetErrorString(err), __FILE__, __LINE__);
+			exit(EXIT_FAILURE);
+		}
+
+	}
+
+	cudaFreeHost(d_image_width);
+	cudaFreeHost(d_image_height);
+	cudaFreeHost(d_src_image);
+	cudaFreeHost(d_dest_image);
+
+	for (int i = 0; i < stream_count; i++) {
+		cudaStreamDestroy(streams[i]);
+	}
+	
 };

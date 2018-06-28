@@ -14,3 +14,5 @@ void sobelFilterShared(int image_width, int image_height, unsigned char *src_iam
 void sobelFilterTexture(int image_width, int image_height, unsigned char *src_iamge, unsigned char *dest_image);
 
 void getHistogramm(int image_width, int image_height, unsigned char *src_image);
+
+void streamAufgabe5(int image_width, int image_height, unsigned char *src_image, unsigned char *dest_image);

@@ -25,7 +25,7 @@ int main(int, char**)
 	Mat edges;
 	//namedWindow("ColorChannelFilter", 1);
 	namedWindow("Grayscale", 1);
-	namedWindow("Sobel", 1);
+	//namedWindow("Sobel", 1);
 
 	for (;;)
 	{
@@ -57,10 +57,11 @@ int main(int, char**)
 //		Canny(edges, edges, 0, 30, 3);
 		unsigned char channel_to_keep = 'b';
 		//setColorChannel(frame.cols, frame.rows,frame.data, output.data, channel_to_keep);
-		rgbToGrayscale(grayscale.cols, grayscale.rows, frame.data, grayscale.data);
+		//rgbToGrayscale(grayscale.cols, grayscale.rows, frame.data, grayscale.data);
+		streamAufgabe5(grayscale.cols, grayscale.rows, frame.data, grayscale.data);
 		//sobelFilterTexture(grayscale.cols, grayscale.rows, grayscale.data, sobel.data);
 		//imshow("ColorChannelFilter", output);
-		getHistogramm(grayscale.cols, grayscale.rows, grayscale.data);
+		//getHistogramm(grayscale.cols, grayscale.rows, grayscale.data);
 		imshow("Grayscale", grayscale);
 		//imshow("Sobel", sobel);
 		if (waitKey(1) >= 0) break;

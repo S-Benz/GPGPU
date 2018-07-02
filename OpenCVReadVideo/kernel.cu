@@ -25,7 +25,6 @@
 
 __global__ void sobelFilterKernelTiledStreams(int *cu_image_width, int *cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image, int sobel_offset)
 {
-
 	__shared__ char ds_Img[BLOCK_W][BLOCK_W];
 
 	int bx = blockIdx.x; int by = blockIdx.y;

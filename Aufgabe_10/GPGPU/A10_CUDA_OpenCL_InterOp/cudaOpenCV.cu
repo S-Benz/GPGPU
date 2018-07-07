@@ -13,6 +13,7 @@
 
 #define CHANNELS 3
 #define SOBEL_RADIUS 1
+#define HISTOGRAMMSIZE 256
 
 using namespace cv;
 
@@ -23,6 +24,25 @@ int *d_width, *d_height; // device memory varíables
 VideoCapture cap("C:/Users/sbenz/Desktop/OpenCVReadVideo/Videos/robotica_1080.mp4"); // Opencv video capture
 Mat currFrame;
 
+
+__global__ void getHistogrammKernel(int cu_image_width, int cu_image_height, unsigned char *cu_src_image, unsigned int *cu_dest_histogramm)
+{
+	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
+	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
+
+
+	int stride_x = blockDim.x * gridDim.x;
+	int stride_y = blockDim.y * gridDim.y;
+
+	while (x < cu_image_width && y < cu_image_height) {
+		int index = y * cu_image_width + x;
+
+		atomicAdd(&(cu_dest_histogramm[cu_src_image[index]]), 1);
+
+		x += stride_x;
+		y += stride_y;
+	}
+}
 
 __global__ void sobelFilterKernel(int cu_image_width, int cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
 {
@@ -468,6 +488,81 @@ void sobelFilter(unsigned char *src_image, int width, int height)
 	cudaFree(d_dest_image_sobel);
 };
 
+void getHistogramm(int width, int height, unsigned char *src_image)
+{
+	unsigned char *d_src_image;
+	unsigned int  *d_dest_histogramm;
+	float *vboPtr;
+
+	unsigned int imgSize = (width * height) * sizeof(unsigned char);
+
+	unsigned int histogrammSize = HISTOGRAMMSIZE * sizeof(unsigned int);
+
+	size_t vboSize = HISTOGRAMMSIZE * 3 * sizeof(float);
+
+
+	cudaError_t err = cudaSuccess;
+
+	//Set Device
+	err = cudaSetDevice(0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image src to gpu
+	err = cudaMalloc((void **)&d_src_image, imgSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	err = cudaMemcpy(d_src_image, src_image, imgSize, cudaMemcpyHostToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//Copy image dest to gpu
+	err = cudaMalloc((void **)&d_dest_histogramm, histogrammSize);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	//VBO
+	err = cudaGraphicsResourceGetMappedPointer((void **)&vboPtr, &vboSize, vboRes);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	unsigned int threads = 16;
+	// Use a Grid with one Block containing 16x16 Threads
+	dim3 threads_per_block(threads, threads, 1);
+	//Per Grid N/16 Blocks
+	dim3 blocks_per_grid((width - 1) / threads + 1, (height - 1) / threads + 1, 1);
+	getHistogrammKernel << <blocks_per_grid, threads_per_block >> >(width, height, d_src_image, d_dest_histogramm);
+
+	// cudaDeviceSynchronize waits for the kernel to finish, and returns
+	// any errors encountered during the launch.
+	err = cudaDeviceSynchronize();
+	if (err != cudaSuccess) {
+		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
+		exit(EXIT_FAILURE);
+	}
+
+
+	cudaFree(d_dest_histogramm);
+	cudaFree(d_src_image);
+};
+
+
 void displayGrayscaleImage(void) {
 	rgbToGrayscale(currFrame.data, currFrame.cols, currFrame.rows);
 }
@@ -480,6 +575,9 @@ void displayColorImage(void) {
 	copyColorImage(currFrame.data, currFrame.cols, currFrame.rows);
 }
 
+void displayHistogramm(void) {
+
+}
 
 int cudaExecOneStep(void) {
 	// Check if videocapture suceeded

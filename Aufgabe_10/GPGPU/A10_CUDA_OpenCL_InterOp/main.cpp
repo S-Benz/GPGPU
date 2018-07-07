@@ -141,20 +141,6 @@ void RenderScene(void)
 	m3dQuatToRotationMatrix(rot, rotation);
 	modelViewMatrix.MultMatrix(rot);
 
-	//setze den Shader für das Rendern und übergebe die Model-View-Projection Matrix
-	shaderManager.UseStockShader(GLT_SHADER_FLAT, transformPipeline.GetModelViewProjectionMatrix(), vGreen);
-	//Auf fehler überprüfen
-	gltCheckErrors(0);
-
-	// Punkte aus dem von CUDA berechneten VBO zeichnen
-	glPointSize(10.0f);
-	glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-	glVertexPointer(3, GL_FLOAT, 0, 0);
-	glEnableClientState(GL_VERTEX_ARRAY); 
-	glDrawArrays(GL_POINTS, 0, 256);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glPointSize(1.0f);
-	
 
 	//setze den Shader für das Rendern und übergebe die Model-View-Projection Matrix
 	shaderManager.UseStockShader(GLT_SHADER_TEXTURE_REPLACE, transformPipeline.GetModelViewProjectionMatrix(), 0);
@@ -162,6 +148,20 @@ void RenderScene(void)
 	gltCheckErrors(0);
 
 	quadScreen.Draw();
+
+	//setze den Shader für das Rendern und übergebe die Model-View-Projection Matrix
+	shaderManager.UseStockShader(GLT_SHADER_FLAT, transformPipeline.GetModelViewProjectionMatrix(), vGreen);
+	//Auf fehler überprüfen
+	gltCheckErrors(0);
+
+	// Punkte aus dem von CUDA berechneten VBO zeichnen
+	glPointSize(.0f);
+	glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+	glVertexPointer(3, GL_FLOAT, 0, 0);
+	glEnableClientState(GL_VERTEX_ARRAY);
+	glDrawArrays(GL_POINTS, 0, 256);
+	glDisableClientState(GL_VERTEX_ARRAY);
+	glPointSize(1.0f);
 
 	// Hole die im Stack gespeicherten Transformationsmatrizen wieder zurück
 	modelViewMatrix.PopMatrix();
@@ -193,11 +193,12 @@ void SetupRC()
 	
 	// mit CUDA gemeinsam genutztes Vertex Buffer Object vorbereiten (CUDA/OpenGL Interoperabilität)
 	// Speicher für die Initialisierung vorbereiten und an OpenGL zum Kopieren übergeben
+	// X,Y,Z Koordinaten für 256 Punkte!
 	GLfloat vPoints[256][3];
 	for (int i = 0; i < 256; i++) {
-		vPoints[i][0] = (i-128)/256.0f * width;
-		vPoints[i][1] = (i-128)/256.0f * height;
-		vPoints[i][2] = 1.0f;
+		vPoints[i][0] = 1.0f;
+		vPoints[i][1] = 1.0f;
+		vPoints[i][2] = 0.0f;
 	}
 
 	glGenBuffers(1, &points_vbo);

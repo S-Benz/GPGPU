@@ -31,8 +31,8 @@ void displayColorImage(void);
 //Applies the sobel filter to the grayscale image
 void applySobelFilter(void);
 
-
-
+//Displays the Histogramm of the current image
+void displayHistogramm(void);
 
 
 #endif

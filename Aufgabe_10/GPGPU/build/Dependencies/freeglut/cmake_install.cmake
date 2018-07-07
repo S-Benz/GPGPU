@@ -1,8 +1,8 @@
-# Install script for directory: H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/freeglut
+# Install script for directory: C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/freeglut
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "H:/GPGPU/Aufgabe_10/GPGPU/Abgabe")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Abgabe")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -25,5 +25,10 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   else()
     set(CMAKE_INSTALL_COMPONENT)
   endif()
+endif()
+
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
 endif()
 

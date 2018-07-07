@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{D7690D94-AE31-33D5-BCD2-90AF64D7B8AB}</ProjectGuid>
+    <ProjectGuid>{8FD0FEFA-5C1E-38E5-ADF2-73738CDD5370}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>INSTALL</ProjectName>
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -85,7 +85,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -107,7 +107,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -129,7 +129,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -150,7 +150,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\2ac92390d30ce65a1e937d966f0d2329\INSTALL_force.rule">
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\08e04ba8dd0939b987ab66ef6e4af3db\INSTALL_force.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 cd .
@@ -161,8 +161,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/2ac92390d30ce65a1e937d966f0d2329/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/08e04ba8dd0939b987ab66ef6e4af3db/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
@@ -174,8 +174,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/2ac92390d30ce65a1e937d966f0d2329/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/08e04ba8dd0939b987ab66ef6e4af3db/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
@@ -187,8 +187,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/2ac92390d30ce65a1e937d966f0d2329/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/08e04ba8dd0939b987ab66ef6e4af3db/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
@@ -200,18 +200,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/2ac92390d30ce65a1e937d966f0d2329/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/08e04ba8dd0939b987ab66ef6e4af3db/INSTALL_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\CMakeFiles\INSTALL_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
-      <Project>{2807CB6E-58E6-372F-8E58-C53B75C87F17}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
+      <Project>{222F13E3-1AEC-3215-ABD7-F844CD2FE105}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\ALL_BUILD.vcxproj">
-      <Project>{8E5467A2-88DE-3EA8-BE29-67A188DB20CB}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\ALL_BUILD.vcxproj">
+      <Project>{734831DA-1D98-3924-9B36-0DA32DF75532}</Project>
       <Name>ALL_BUILD</Name>
     </ProjectReference>
   </ItemGroup>

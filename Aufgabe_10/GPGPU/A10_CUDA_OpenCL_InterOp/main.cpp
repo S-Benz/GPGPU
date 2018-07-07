@@ -11,6 +11,8 @@
 #include <GLMatrixStack.h>
 #include <GLGeometryTransform.h>
 #include <GLFrustum.h>
+#include <cuda_runtime.h>
+#include <cuda_gl_interop.h>
 #include <math.h>
 #include <math3d.h>
 #include <GL/freeglut.h>
@@ -31,6 +33,7 @@ GLFrustum viewFrustum;
 GLBatch quadScreen;
 
 GLuint tex = 0;         // OpenGL Identifier für Textur
+GLuint tex_g = 0;
 GLuint points_vbo = 0;  // OpenGL Identifier für Vertex Buffer Object
 
 // Rotationsgroessen
@@ -70,8 +73,7 @@ void InitGUI()
 {
 	bar = TwNewBar("TweakBar");
 	TwDefine(" TweakBar size='200 400'");
-	TwAddVarRW(bar, "Model Rotation", TW_TYPE_QUAT4F, &rotation, "");
-	TwAddVarRW(bar, "Grauwert", TW_TYPE_BOOLCPP, &bGrayscale, "");
+	TwAddVarRW(bar, "Grayscale", TW_TYPE_BOOLCPP, &bGrayscale, "");
 	TwAddVarRW(bar, "Sobel", TW_TYPE_BOOLCPP, &bSobel, "");
 	TwAddVarRW(bar, "Histogramm", TW_TYPE_BOOLCPP, &bHistogramm, "");
 	//Hier weitere GUI Variablen anlegen. Für Farbe z.B. den Typ TW_TYPE_COLOR4F benutzen
@@ -92,7 +94,6 @@ void CreateGeometry(unsigned int width, unsigned int height)
 	quadScreen.MultiTexCoord2f(0, 1.f, 1.f); quadScreen.Vertex3f( w, -h, 0.0f);
 	quadScreen.MultiTexCoord2f(0, 0.f, 0.f); quadScreen.Vertex3f(-w,  h, 0.0f);
 	quadScreen.MultiTexCoord2f(0, 1.f, 0.f); quadScreen.Vertex3f( w,  h, 0.0f);
-
 	quadScreen.End();
 }
 
@@ -108,14 +109,31 @@ void RenderScene(void)
 	// Clearbefehle für den color buffer und den depth buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-	// Sobel
-	if (bSobel)
+	//Set correct texture
+	if (bGrayscale || bSobel) {
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, tex_g);
+	}
+	else {
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, tex);
+		displayColorImage();
+	}
 
-	// Grayscale
-	if (bGrayscale)
+	// Sobel
+	if (bGrayscale) {
+		displayGrayscaleImage();
+	}
+
+	// Sobel
+	if (bSobel){
+		applySobelFilter();
+	}
 
 	// Histogramm
-	if (bHistogramm)
+	if (bHistogramm){
+
+	}
 
 	// Speichere den matrix state und führe die Rotation durch
 	modelViewMatrix.PushMatrix();
@@ -172,13 +190,7 @@ void SetupRC()
 	transformPipeline.SetMatrixStacks(modelViewMatrix, projectionMatrix);
 	//erzeuge die geometrie
 	InitGUI();
-
-	//Read Images
-	VideoCapture cap("H:\GPGPU\Aufgabe_10\GPGPU\vid\robotica_1080.mp4");
-	Mat frame;		
 	
-	cap >> frame;
-
 	// mit CUDA gemeinsam genutztes Vertex Buffer Object vorbereiten (CUDA/OpenGL Interoperabilität)
 	// Speicher für die Initialisierung vorbereiten und an OpenGL zum Kopieren übergeben
 	GLfloat vPoints[256][3];
@@ -198,16 +210,25 @@ void SetupRC()
 	// mit CUDA gemeinsam genutzte Textur vorbereiten (CUDA/OpenGL Interoperabilität)
 	// Speicher für die Initialisierung vorbereiten und an OpenGL übergeben
 	unsigned char *dataPtr = (unsigned char*)malloc(width*height);
-	/*for (unsigned int i = 0; i < height; i++) {
+	for (unsigned int i = 0; i < height; i++) {
 		for (unsigned int j = 0; j < width; j++) {
 			dataPtr[i*width + j] = j % 256;
 		}
-	}*/
+	}
+
+	glGenTextures(1, &tex_g);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, tex_g);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, nullptr);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	glGenTextures(1, &tex);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, tex);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, frame.data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
@@ -216,8 +237,9 @@ void SetupRC()
 	free(dataPtr);
 
 
-	cudaInit(tex, points_vbo, width, height);
+	cudaInit(tex, tex_g, points_vbo, width, height);
 }
+
 
 void SpecialKeys(int key, int x, int y)
 {
@@ -283,7 +305,7 @@ int main(int argc, char* argv[])
 
 	TwInit(TW_OPENGL_CORE, NULL);
 	SetupRC();
-	//CreateGeometry(width, height);
+	CreateGeometry(width, height);
 
 	glutMainLoop();
 

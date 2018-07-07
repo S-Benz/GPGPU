@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8E5467A2-88DE-3EA8-BE29-67A188DB20CB}</ProjectGuid>
+    <ProjectGuid>{734831DA-1D98-3924-9B36-0DA32DF75532}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -73,7 +73,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -93,7 +93,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\FreeImageToolkit;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibMNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibOpenJPEG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibPNG;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\LibTIFF;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Half;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Iex;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmImf;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\IlmThread;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\OpenEXR\Imath;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source\ZLib;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -102,10 +102,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -113,12 +113,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -126,12 +126,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -139,12 +139,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/FreeImage/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -152,20 +152,20 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/FreeImage/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
-      <Project>{2807CB6E-58E6-372F-8E58-C53B75C87F17}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
+      <Project>{222F13E3-1AEC-3215-ABD7-F844CD2FE105}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\FreeImage.vcxproj">
-      <Project>{80221CEE-0D1B-3B84-A571-0F217B816CFA}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\FreeImage\FreeImage.vcxproj">
+      <Project>{0FF7FA3D-E948-38B7-9756-234628E0C6A6}</Project>
       <Name>FreeImage</Name>
     </ProjectReference>
   </ItemGroup>

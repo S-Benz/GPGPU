@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{70499BE9-79C9-317C-B106-D78479E1B80D}</ProjectGuid>
+    <ProjectGuid>{17FC72C2-560C-360C-9301-7274B13F28AC}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>A10_CUDA_OpenCL_InterOp</ProjectName>
@@ -56,25 +56,25 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup>
     <_ProjectFileVersion>10.0.20506.1</_ProjectFileVersion>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\Debug\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\Debug\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">A10_CUDA_OpenCL_InterOp.dir\Debug\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">A10_CUDA_OpenCL_InterOp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">.exe</TargetExt>
-    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</LinkIncremental>
+    <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\Release\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\Release\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='Release|x64'">A10_CUDA_OpenCL_InterOp.dir\Release\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">A10_CUDA_OpenCL_InterOp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='Release|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\MinSizeRel\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\MinSizeRel\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">A10_CUDA_OpenCL_InterOp.dir\MinSizeRel\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">A10_CUDA_OpenCL_InterOp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">.exe</TargetExt>
     <LinkIncremental Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkIncremental>
     <GenerateManifest Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">true</GenerateManifest>
-    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\RelWithDebInfo\</OutDir>
+    <OutDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\RelWithDebInfo\</OutDir>
     <IntDir Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">A10_CUDA_OpenCL_InterOp.dir\RelWithDebInfo\</IntDir>
     <TargetName Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">A10_CUDA_OpenCL_InterOp</TargetName>
     <TargetExt Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">.exe</TargetExt>
@@ -83,7 +83,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Debug/</AssemblerListingLocation>
       <BasicRuntimeChecks>EnableFastChecks</BasicRuntimeChecks>
       <CompileAs>CompileAsCpp</CompileAs>
@@ -100,20 +100,23 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR=\"Debug\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
+      <Include>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
       <Defines>_WINDOWS;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR="Debug";%(Defines)</Defines>
       <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Zi -Ob0"</AdditionalOptions>
-      <Include>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <GPUDebugInfo>false</GPUDebugInfo>
       <Optimization>Od</Optimization>
       <Runtime>MDd</Runtime>
       <RuntimeChecks>RTC1</RuntimeChecks>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
       <TypeInfo>true</TypeInfo>
       <Warning>W3</Warning>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -121,16 +124,15 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\Dependencies\freeglut\Debug\freeglut.lib;..\Dependencies\GLTools\Debug\GLTools.lib;..\Dependencies\AntTweakBar\Debug\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\Debug\glew.lib;..\Dependencies\freeglut\Debug\freeglut.lib;winmm.lib;glu32.lib;opengl32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\Dependencies\freeglut\Debug\freeglut.lib;..\Dependencies\GLTools\Debug\GLTools.lib;..\Dependencies\AntTweakBar\Debug\AntTweakBar.lib;opencv_world341.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\Debug\glew.lib;winmm.lib;opengl32.lib;glu32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\OpenCv\opencv\build\bin;C:\Users\sbenz\Desktop\GPGPU\OpenCVReadVideo\OpenCV\vc14\lib;C:/OpenCv/opencv/build/x64/vc14/lib;C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
-      <ProgramDataBaseFile>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version>
-      </Version>
+      <SuppressStartupBanner>false</SuppressStartupBanner>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -142,7 +144,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>Release/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -159,19 +161,22 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR=\"Release\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
+      <Include>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
       <Defines>_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR="Release";%(Defines)</Defines>
       <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Ob2"</AdditionalOptions>
-      <Include>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <GPUDebugInfo>false</GPUDebugInfo>
       <Optimization>O2</Optimization>
       <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
       <TypeInfo>true</TypeInfo>
       <Warning>W3</Warning>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -179,16 +184,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\Dependencies\freeglut\Release\freeglut.lib;..\Dependencies\GLTools\Release\GLTools.lib;..\Dependencies\AntTweakBar\Release\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\Release\glew.lib;..\Dependencies\freeglut\Release\freeglut.lib;winmm.lib;glu32.lib;opengl32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\Dependencies\freeglut\Release\freeglut.lib;..\Dependencies\GLTools\Release\GLTools.lib;..\Dependencies\AntTweakBar\Release\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\Release\glew.lib;..\Dependencies\freeglut\Release\freeglut.lib;winmm.lib;opengl32.lib;glu32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
-      <ProgramDataBaseFile>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version>
-      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -200,7 +203,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>MinSizeRel/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <ExceptionHandling>Sync</ExceptionHandling>
@@ -217,19 +220,22 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR=\"MinSizeRel\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
+      <Include>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
       <Defines>_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR="MinSizeRel";%(Defines)</Defines>
       <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Ob1"</AdditionalOptions>
-      <Include>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <GPUDebugInfo>false</GPUDebugInfo>
       <Optimization>O1</Optimization>
       <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
       <TypeInfo>true</TypeInfo>
       <Warning>W3</Warning>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -237,16 +243,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\Dependencies\freeglut\MinSizeRel\freeglut.lib;..\Dependencies\GLTools\MinSizeRel\GLTools.lib;..\Dependencies\AntTweakBar\MinSizeRel\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\MinSizeRel\glew.lib;..\Dependencies\freeglut\MinSizeRel\freeglut.lib;winmm.lib;glu32.lib;opengl32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\Dependencies\freeglut\MinSizeRel\freeglut.lib;..\Dependencies\GLTools\MinSizeRel\GLTools.lib;..\Dependencies\AntTweakBar\MinSizeRel\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\MinSizeRel\glew.lib;..\Dependencies\freeglut\MinSizeRel\freeglut.lib;winmm.lib;opengl32.lib;glu32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <GenerateDebugInformation>No</GenerateDebugInformation>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/MinSizeRel/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
-      <ProgramDataBaseFile>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/MinSizeRel/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/MinSizeRel/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/MinSizeRel/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version>
-      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -258,7 +262,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AssemblerListingLocation>RelWithDebInfo/</AssemblerListingLocation>
       <CompileAs>CompileAsCpp</CompileAs>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
@@ -274,19 +278,22 @@
     </ClCompile>
     <ResourceCompile>
       <PreprocessorDefinitions>WIN32;_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR=\"RelWithDebInfo\";%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ResourceCompile>
     <CudaCompile>
+      <Include>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
       <Defines>_WINDOWS;NDEBUG;FREEIMAGE_LIB;TW_STATIC;_CRT_SECURE_NO_WARNINGS;FREEGLUT_LIB_PRAGMAS=0;FREEGLUT_STATIC;TW_NO_LIB_PRAGMA;CMAKE_INTDIR="RelWithDebInfo";%(Defines)</Defines>
       <AdditionalOptions>%(AdditionalOptions) -Xcompiler="/EHsc -Zi -Ob1"</AdditionalOptions>
-      <Include>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(Include)</Include>
+      <CompileOut>$(IntDir)%(Filename).obj</CompileOut>
+      <GPUDebugInfo>false</GPUDebugInfo>
       <Optimization>O2</Optimization>
       <Runtime>MD</Runtime>
+      <TargetMachinePlatform>64</TargetMachinePlatform>
       <TypeInfo>true</TypeInfo>
       <Warning>W3</Warning>
     </CudaCompile>
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -294,16 +301,14 @@
       <ProxyFileName>%(Filename)_p.c</ProxyFileName>
     </Midl>
     <Link>
-      <AdditionalDependencies>..\Dependencies\freeglut\RelWithDebInfo\freeglut.lib;..\Dependencies\GLTools\RelWithDebInfo\GLTools.lib;..\Dependencies\AntTweakBar\RelWithDebInfo\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\RelWithDebInfo\glew.lib;..\Dependencies\freeglut\RelWithDebInfo\freeglut.lib;winmm.lib;glu32.lib;opengl32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
-      <AdditionalLibraryDirectories>H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>..\Dependencies\freeglut\RelWithDebInfo\freeglut.lib;..\Dependencies\GLTools\RelWithDebInfo\GLTools.lib;..\Dependencies\AntTweakBar\RelWithDebInfo\AntTweakBar.lib;opencv_core340d.lib;opencv_highgui340d.lib;opencv_imgproc340d.lib;opencv_imgcodecs340d.lib;opencv_video340d.lib;opencv_videoio340d.lib;..\Dependencies\glew\RelWithDebInfo\glew.lib;..\Dependencies\freeglut\RelWithDebInfo\freeglut.lib;winmm.lib;opengl32.lib;glu32.lib;cudart_static.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;comdlg32.lib;advapi32.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug;C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/OpenCV/lib/Debug/$(Configuration);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalOptions>%(AdditionalOptions) /machine:x64</AdditionalOptions>
-      <GenerateDebugInformation>Debug</GenerateDebugInformation>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
       <IgnoreSpecificDefaultLibraries>%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
-      <ImportLibrary>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/RelWithDebInfo/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
-      <ProgramDataBaseFile>H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/RelWithDebInfo/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
+      <ImportLibrary>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/RelWithDebInfo/A10_CUDA_OpenCL_InterOp.lib</ImportLibrary>
+      <ProgramDataBaseFile>C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/RelWithDebInfo/A10_CUDA_OpenCL_InterOp.pdb</ProgramDataBaseFile>
       <SubSystem>Console</SubSystem>
-      <Version>
-      </Version>
     </Link>
     <ProjectReference>
       <LinkLibraryDependencies>false</LinkLibraryDependencies>
@@ -314,10 +319,10 @@
     </CudaLink>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -325,12 +330,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -338,12 +343,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -351,12 +356,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -364,34 +369,34 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\main.cpp" />
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\main.cpp" />
     <CudaCompile Include="..\..\A10_CUDA_OpenCL_InterOp\cudaOpenCV.cu" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
-      <Project>{2807CB6E-58E6-372F-8E58-C53B75C87F17}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
+      <Project>{222F13E3-1AEC-3215-ABD7-F844CD2FE105}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\AntTweakBar.vcxproj">
-      <Project>{84F51F63-5EE6-3986-AF9E-54CEA6F8B84F}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\AntTweakBar.vcxproj">
+      <Project>{C6B032E9-D366-342F-9B3E-8D89D7DFA967}</Project>
       <Name>AntTweakBar</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\GLTools.vcxproj">
-      <Project>{B5669589-904A-3156-BB4A-77EA8D3D10F5}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\GLTools\GLTools.vcxproj">
+      <Project>{DAA29DB3-284B-3334-80D5-D9C21DE22535}</Project>
       <Name>GLTools</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\freeglut\freeglut.vcxproj">
-      <Project>{4984CA99-7373-39E7-983F-9EE5E4955090}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\freeglut\freeglut.vcxproj">
+      <Project>{2CE11312-C833-3360-858E-501A2496C0D3}</Project>
       <Name>freeglut</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\glew\glew.vcxproj">
-      <Project>{82294AE9-66F1-3BD1-A6B1-C421C2817AA7}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\glew\glew.vcxproj">
+      <Project>{7CA5DC75-6974-3C53-93AF-55516FDDCBC8}</Project>
       <Name>glew</Name>
     </ProjectReference>
   </ItemGroup>

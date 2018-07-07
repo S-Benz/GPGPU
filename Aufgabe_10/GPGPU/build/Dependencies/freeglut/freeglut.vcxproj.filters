@@ -1,108 +1,108 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_callbacks.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_callbacks.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_cursor.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_cursor.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_display.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_display.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_ext.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_ext.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_font_data.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_font_data.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_font.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_font.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_gamemode.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_gamemode.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_geometry.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_geometry.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_glutfont_definitions.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_glutfont_definitions.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_init.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_init.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_input_devices.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_input_devices.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_joystick.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_joystick.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_main.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_main.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_menu.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_menu.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_misc.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_misc.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_overlay.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_overlay.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_spaceball.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_spaceball.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_state.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_state.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_stroke_mono_roman.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_stroke_mono_roman.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_stroke_roman.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_stroke_roman.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_structure.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_structure.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_teapot.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_teapot.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_videoresize.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_videoresize.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_window.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_window.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_internal.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_internal.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_teapot_data.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\src\freeglut_teapot_data.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut_ext.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut_ext.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut_std.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\freeglut_std.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\glut.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include\GL\glut.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{C780A959-EF65-3D36-AE88-F181EF70FD5C}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{34890B4B-6B68-3173-84CE-7D3E05CB24B8}</UniqueIdentifier>
+      <UniqueIdentifier>{72141213-A0C0-392A-87D4-FF033E7F4844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{AE7FAD5B-0388-3135-9CC6-97CEC7B9FB66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

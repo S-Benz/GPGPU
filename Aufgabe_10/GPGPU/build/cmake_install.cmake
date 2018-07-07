@@ -1,8 +1,8 @@
-# Install script for directory: H:/GPGPU/Aufgabe_10/GPGPU
+# Install script for directory: C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "H:/GPGPU/Aufgabe_10/GPGPU/Abgabe")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Abgabe")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,15 +27,20 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "H:/GPGPU/Aufgabe_10/GPGPU/Texturen")
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/." TYPE DIRECTORY FILES "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Texturen")
 endif()
 
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
-  include("H:/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/cmake_install.cmake")
-  include("H:/GPGPU/Aufgabe_10/GPGPU/build/ImageLoader/cmake_install.cmake")
-  include("H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/cmake_install.cmake")
+  include("C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/Dependencies/cmake_install.cmake")
+  include("C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/ImageLoader/cmake_install.cmake")
+  include("C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/cmake_install.cmake")
 
 endif()
 
@@ -47,5 +52,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "H:/GPGPU/Aufgabe_10/GPGPU/build/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

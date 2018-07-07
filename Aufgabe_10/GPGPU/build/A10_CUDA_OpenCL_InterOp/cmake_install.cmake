@@ -1,8 +1,8 @@
-# Install script for directory: H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp
+# Install script for directory: C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
-  set(CMAKE_INSTALL_PREFIX "H:/GPGPU/Aufgabe_10/GPGPU/Abgabe")
+  set(CMAKE_INSTALL_PREFIX "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Abgabe")
 endif()
 string(REGEX REPLACE "/$" "" CMAKE_INSTALL_PREFIX "${CMAKE_INSTALL_PREFIX}")
 
@@ -27,22 +27,27 @@ if(NOT CMAKE_INSTALL_COMPONENT)
   endif()
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+# Is this installation the result of a crosscompile?
+if(NOT DEFINED CMAKE_CROSSCOMPILING)
+  set(CMAKE_CROSSCOMPILING "FALSE")
+endif()
+
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Dd][Ee][Bb][Uu][Gg])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/A10_CUDA_OpenCL_InterOp" TYPE EXECUTABLE FILES "H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.exe")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/A10_CUDA_OpenCL_InterOp" TYPE EXECUTABLE FILES "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Debug/A10_CUDA_OpenCL_InterOp.exe")
   endif()
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "Unspecified" OR NOT CMAKE_INSTALL_COMPONENT)
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   if("${CMAKE_INSTALL_CONFIG_NAME}" MATCHES "^([Rr][Ee][Ll][Ee][Aa][Ss][Ee])$")
-    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/A10_CUDA_OpenCL_InterOp" TYPE EXECUTABLE FILES "H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.exe")
+    file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/A10_CUDA_OpenCL_InterOp" TYPE EXECUTABLE FILES "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/Release/A10_CUDA_OpenCL_InterOp.exe")
   endif()
 endif()
 
-if("${CMAKE_INSTALL_COMPONENT}" STREQUAL "A10_CUDA_OpenCL_InterOp" OR NOT CMAKE_INSTALL_COMPONENT)
+if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xA10_CUDA_OpenCL_InterOpx" OR NOT CMAKE_INSTALL_COMPONENT)
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/A10_CUDA_OpenCL_InterOp" TYPE FILE FILES
-    "H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/main.cpp"
-    "H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/cudaOpenCV.cu"
+    "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/main.cpp"
+    "C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/cudaOpenCV.cu"
     )
 endif()
 

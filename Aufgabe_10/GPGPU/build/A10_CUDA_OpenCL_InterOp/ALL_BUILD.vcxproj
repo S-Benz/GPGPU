@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{8E5467A2-88DE-3EA8-BE29-67A188DB20CB}</ProjectGuid>
+    <ProjectGuid>{734831DA-1D98-3924-9B36-0DA32DF75532}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>ALL_BUILD</ProjectName>
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -73,7 +73,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -83,7 +83,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -93,7 +93,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;H:\GPGPU\Aufgabe_10\GPGPU;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\FreeImage\Source;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\freeglut\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\GLTools\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\glew\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\OpenCV\include;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\CUDASamples\common\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -102,10 +102,10 @@
     </Midl>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt">
-      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt">
+      <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -113,12 +113,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -126,12 +126,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -139,12 +139,12 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
-      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
+      <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">Building Custom Rule C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt</Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
-"C:\Program Files\CMake\bin\cmake.exe" -HH:/GPGPU/Aufgabe_10/GPGPU -BH:/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file H:/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
+"C:\Program Files\CMake\bin\cmake.exe" -HC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU -BC:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build --check-stamp-file C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/A10_CUDA_OpenCL_InterOp/CMakeFiles/generate.stamp
 if %errorlevel% neq 0 goto :cmEnd
 :cmEnd
 endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
@@ -152,20 +152,20 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.9.0-rc6\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.9\Modules\CMakeCommonLanguageInclude.cmake;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;H:\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/A10_CUDA_OpenCL_InterOp/CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3.11.4\CMakeCCompiler.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeLanguageInformation.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC-C.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\Platform\Windows-MSVC.cmake;C:\Program Files\CMake\share\cmake-3.11\Modules\CMakeCommonLanguageInclude.cmake;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\vcxproj.user.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\cmake\launcher-templates\targetlauncher.cmd.in;C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\A10_CUDA_OpenCL_InterOp\CMakeLists.txt;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\CMakeFiles\generate.stamp</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
-      <Project>{2807CB6E-58E6-372F-8E58-C53B75C87F17}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
+      <Project>{222F13E3-1AEC-3215-ABD7-F844CD2FE105}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\A10_CUDA_OpenCL_InterOp.vcxproj">
-      <Project>{70499BE9-79C9-317C-B106-D78479E1B80D}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\A10_CUDA_OpenCL_InterOp\A10_CUDA_OpenCL_InterOp.vcxproj">
+      <Project>{17FC72C2-560C-360C-9301-7274B13F28AC}</Project>
       <Name>A10_CUDA_OpenCL_InterOp</Name>
     </ProjectReference>
   </ItemGroup>

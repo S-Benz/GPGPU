@@ -14,12 +14,25 @@ void cudaGetOpenCVImageSize(unsigned int &cols, unsigned int &rows);
 //                            die Histogrammdaten (256 Werte, umgerechnet in Bildkoordinaten, s. main.cpp) an OpenGL übergeben werden
 //    unsigned int &cols,     Zeilenbreite des Videos
 //    unsigned int &rows      Höhe  ""
-void cudaInit(unsigned int texId, unsigned int vboId, unsigned int cols, unsigned int rows);
+void cudaInit(unsigned int texId, unsigned int texIdGray, unsigned int vboId, unsigned int cols, unsigned int rows);
 
 // Führe einen CUDA-Berechnungsschritt aus
 // Returnwert:
 //    0     Es konnte ein Frame gelesen und korrekt verarbeitet werden
 //   -1     Es war entweder kein Frame mehr vorhanden (Video zu Ende) oder ein Fehler ist aufgetreten
 int cudaExecOneStep(void);
+
+// Displays the image as a grayscale image
+void displayGrayscaleImage(void);
+
+//Displays the base image
+void displayColorImage(void);
+
+//Applies the sobel filter to the grayscale image
+void applySobelFilter(void);
+
+
+
+
 
 #endif

@@ -1,78 +1,78 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwPrecomp.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwPrecomp.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwMgr.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwMgr.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwFonts.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwFonts.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwColors.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwColors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwBar.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwBar.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGL.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\LoadOGL.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\LoadOGL.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGLCore.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGLCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\LoadOGLCore.cpp">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\LoadOGLCore.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwEventGLUT.c">
+    <ClCompile Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwEventGLUT.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwPrecomp.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwPrecomp.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwMgr.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwMgr.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwFonts.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwFonts.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwColors.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwColors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwBar.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwBar.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwGraph.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwGraph.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\resource.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\resource.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGL.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGL.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGLCore.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\TwOpenGLCore.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\MiniGLUT.h">
+    <ClInclude Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\src\MiniGLUT.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\CMakeLists.txt" />
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\CMakeLists.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{C780A959-EF65-3D36-AE88-F181EF70FD5C}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files">
-      <UniqueIdentifier>{34890B4B-6B68-3173-84CE-7D3E05CB24B8}</UniqueIdentifier>
+      <UniqueIdentifier>{72141213-A0C0-392A-87D4-FF033E7F4844}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{AE7FAD5B-0388-3135-9CC6-97CEC7B9FB66}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="14.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|x64">
@@ -19,7 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{63F6D817-A453-3D5A-939C-4D9E46B10CFB}</ProjectGuid>
+    <ProjectGuid>{062F6613-2EE6-378E-82BD-314BFE3C87B6}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <Platform>x64</Platform>
     <ProjectName>PACKAGE</ProjectName>
@@ -63,7 +63,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -73,9 +73,9 @@
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd H:\GPGPU\Aufgabe_10\GPGPU\build
+cd C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build
 if %errorlevel% neq 0 goto :cmEnd
-H:
+C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -89,7 +89,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -99,9 +99,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd H:\GPGPU\Aufgabe_10\GPGPU\build
+cd C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build
 if %errorlevel% neq 0 goto :cmEnd
-H:
+C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -115,7 +115,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -125,9 +125,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd H:\GPGPU\Aufgabe_10\GPGPU\build
+cd C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build
 if %errorlevel% neq 0 goto :cmEnd
-H:
+C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -141,7 +141,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">
     <Midl>
-      <AdditionalIncludeDirectories>H:\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\Dependencies\AntTweakBar\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OutputDirectory>$(ProjectDir)/$(IntDir)</OutputDirectory>
       <HeaderFileName>%(Filename).h</HeaderFileName>
       <TypeLibraryName>%(Filename).tlb</TypeLibraryName>
@@ -151,9 +151,9 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     <PostBuildEvent>
       <Message></Message>
       <Command>setlocal
-cd H:\GPGPU\Aufgabe_10\GPGPU\build
+cd C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build
 if %errorlevel% neq 0 goto :cmEnd
-H:
+C:
 if %errorlevel% neq 0 goto :cmEnd
 "C:\Program Files\CMake\bin\cpack.exe" -C $(Configuration) --config ./CPackConfig.cmake
 if %errorlevel% neq 0 goto :cmEnd
@@ -166,7 +166,7 @@ if %errorlevel% neq 0 goto :VCEnd</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <CustomBuild Include="H:\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\3c0dfbe3c58ca6d8f903882b3eb51679\PACKAGE_force.rule">
+    <CustomBuild Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\CMakeFiles\5f3f1c75e5a94235d65193922cc9adac\PACKAGE_force.rule">
       <Message Condition="'$(Configuration)|$(Platform)'=='Debug|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">setlocal
 cd .
@@ -177,8 +177,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/3c0dfbe3c58ca6d8f903882b3eb51679/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/5f3f1c75e5a94235d65193922cc9adac/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='Release|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal
@@ -190,8 +190,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/3c0dfbe3c58ca6d8f903882b3eb51679/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/5f3f1c75e5a94235d65193922cc9adac/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='Release|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">setlocal
@@ -203,8 +203,8 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/3c0dfbe3c58ca6d8f903882b3eb51679/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/5f3f1c75e5a94235d65193922cc9adac/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='MinSizeRel|x64'">false</LinkObjects>
       <Message Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'"> </Message>
       <Command Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">setlocal
@@ -216,18 +216,18 @@ endlocal &amp; call :cmErrorLevel %errorlevel% &amp; goto :cmDone
 exit /b %1
 :cmDone
 if %errorlevel% neq 0 goto :VCEnd</Command>
-      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/3c0dfbe3c58ca6d8f903882b3eb51679/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
-      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
+      <AdditionalInputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/build/CMakeFiles/5f3f1c75e5a94235d65193922cc9adac/PACKAGE_force.rule;%(AdditionalInputs)</AdditionalInputs>
+      <Outputs Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\CMakeFiles\PACKAGE_force</Outputs>
       <LinkObjects Condition="'$(Configuration)|$(Platform)'=='RelWithDebInfo|x64'">false</LinkObjects>
     </CustomBuild>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
-      <Project>{2807CB6E-58E6-372F-8E58-C53B75C87F17}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\ZERO_CHECK.vcxproj">
+      <Project>{222F13E3-1AEC-3215-ABD7-F844CD2FE105}</Project>
       <Name>ZERO_CHECK</Name>
     </ProjectReference>
-    <ProjectReference Include="H:\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\ALL_BUILD.vcxproj">
-      <Project>{8E5467A2-88DE-3EA8-BE29-67A188DB20CB}</Project>
+    <ProjectReference Include="C:\Users\sbenz\Desktop\GPGPU\Aufgabe_10\GPGPU\build\Dependencies\AntTweakBar\ALL_BUILD.vcxproj">
+      <Project>{734831DA-1D98-3924-9B36-0DA32DF75532}</Project>
       <Name>ALL_BUILD</Name>
     </ProjectReference>
   </ItemGroup>

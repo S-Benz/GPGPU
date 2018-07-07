@@ -1,5 +1,5 @@
 # CMake generation dependency list for this directory.
-H:/GPGPU/Aufgabe_10/GPGPU/Dependencies/freeglut/CMakeLists.txt
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindOpenGL.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageHandleStandardArgs.cmake
-C:/Program Files/CMake/share/cmake-3.9/Modules/FindPackageMessage.cmake
+C:/Users/sbenz/Desktop/GPGPU/Aufgabe_10/GPGPU/Dependencies/freeglut/CMakeLists.txt
+C:/Program Files/CMake/share/cmake-3.11/Modules/FindOpenGL.cmake
+C:/Program Files/CMake/share/cmake-3.11/Modules/FindPackageHandleStandardArgs.cmake
+C:/Program Files/CMake/share/cmake-3.11/Modules/FindPackageMessage.cmake

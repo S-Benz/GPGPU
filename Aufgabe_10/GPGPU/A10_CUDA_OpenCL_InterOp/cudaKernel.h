@@ -1,6 +1,11 @@
 #ifndef CUDAKERNEL_H_
 # define CUDAKERNEL_H_
 
+#pragma once
+#ifdef __INTELLISENSE__
+void __syncthreads();
+#endif
+
 // Ermittle die Größe des zu verarbeitenden Videos
 // Parameter:
 //    unsigned int &cols,     Zeilenbreite des Videos, Returnparameter

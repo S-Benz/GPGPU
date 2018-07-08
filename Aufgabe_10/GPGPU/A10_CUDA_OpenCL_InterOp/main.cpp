@@ -110,12 +110,10 @@ void RenderScene(void)
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
 	//Set correct texture
-	if (bGrayscale || bSobel) {
-		glActiveTexture(GL_TEXTURE0);
+	if (bGrayscale) {
 		glBindTexture(GL_TEXTURE_2D, tex_g);
 	}
 	else {
-		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, tex);
 		displayColorImage();
 	}
@@ -126,13 +124,13 @@ void RenderScene(void)
 	}
 
 	// Sobel
-	if (bSobel){
+	if (bSobel && bGrayscale){
 		applySobelFilter();
 	}
 
 	// Histogramm
-	if (bHistogramm){
-
+	if (bHistogramm && (bGrayscale || bSobel)){
+		displayHistogramm();
 	}
 
 	// Speichere den matrix state und führe die Rotation durch
@@ -149,20 +147,21 @@ void RenderScene(void)
 
 	quadScreen.Draw();
 
-	//setze den Shader für das Rendern und übergebe die Model-View-Projection Matrix
-	shaderManager.UseStockShader(GLT_SHADER_FLAT, transformPipeline.GetModelViewProjectionMatrix(), vGreen);
-	//Auf fehler überprüfen
-	gltCheckErrors(0);
+	if (bHistogramm) {
+		//setze den Shader für das Rendern und übergebe die Model-View-Projection Matrix
+		shaderManager.UseStockShader(GLT_SHADER_FLAT, transformPipeline.GetModelViewProjectionMatrix(), vGreen);
+		//Auf fehler überprüfen
+		gltCheckErrors(0);
 
-	// Punkte aus dem von CUDA berechneten VBO zeichnen
-	glPointSize(.0f);
-	glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
-	glVertexPointer(3, GL_FLOAT, 0, 0);
-	glEnableClientState(GL_VERTEX_ARRAY);
-	glDrawArrays(GL_POINTS, 0, 256);
-	glDisableClientState(GL_VERTEX_ARRAY);
-	glPointSize(1.0f);
-
+		// Punkte aus dem von CUDA berechneten VBO zeichnen
+		glPointSize(5.0f);
+		glBindBuffer(GL_ARRAY_BUFFER, points_vbo);
+		glVertexPointer(3, GL_FLOAT, 0, 0);
+		glEnableClientState(GL_VERTEX_ARRAY);
+		glDrawArrays(GL_POINTS, 0, 256);
+		glDisableClientState(GL_VERTEX_ARRAY);
+		glPointSize(1.0f);
+	}
 	// Hole die im Stack gespeicherten Transformationsmatrizen wieder zurück
 	modelViewMatrix.PopMatrix();
 
@@ -196,9 +195,9 @@ void SetupRC()
 	// X,Y,Z Koordinaten für 256 Punkte!
 	GLfloat vPoints[256][3];
 	for (int i = 0; i < 256; i++) {
-		vPoints[i][0] = 1.0f;
-		vPoints[i][1] = 1.0f;
-		vPoints[i][2] = 0.0f;
+		vPoints[i][0] = (i - 128) / 256.0f * width;
+		vPoints[i][1] = -(width/4.0f);
+		vPoints[i][2] = 1.0f;
 	}
 
 	glGenBuffers(1, &points_vbo);

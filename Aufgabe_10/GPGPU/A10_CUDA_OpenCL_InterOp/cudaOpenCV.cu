@@ -14,6 +14,7 @@
 #define CHANNELS 3
 #define SOBEL_RADIUS 1
 #define HISTOGRAMMSIZE 256
+#define HISTOGRAMMPTRWIDTH 3
 
 using namespace cv;
 
@@ -25,7 +26,7 @@ VideoCapture cap("C:/Users/sbenz/Desktop/OpenCVReadVideo/Videos/robotica_1080.mp
 Mat currFrame;
 
 
-__global__ void getHistogrammKernel(int cu_image_width, int cu_image_height, unsigned char *cu_src_image, unsigned int *cu_dest_histogramm)
+__global__ void getHistogrammKernel(int cu_image_width, int cu_image_height, unsigned char *cu_src_image, float *cu_histogramm_ptr)
 {
 	int x = blockIdx.x * blockDim.x + threadIdx.x; //cols
 	int y = blockIdx.y * blockDim.y + threadIdx.y; //rows
@@ -34,14 +35,27 @@ __global__ void getHistogrammKernel(int cu_image_width, int cu_image_height, uns
 	int stride_x = blockDim.x * gridDim.x;
 	int stride_y = blockDim.y * gridDim.y;
 
+	// Reset Histogramm y-values
+	int stride_histogramm = HISTOGRAMMSIZE;
+	for (int i = 0; i < HISTOGRAMMSIZE; i++) {
+		cu_histogramm_ptr[i * HISTOGRAMMPTRWIDTH + 1] = -(cu_image_width / 4.0f);
+	}
+
+	__syncthreads();
+
+
 	while (x < cu_image_width && y < cu_image_height) {
 		int index = y * cu_image_width + x;
+		int value = cu_src_image[index];
 
-		atomicAdd(&(cu_dest_histogramm[cu_src_image[index]]), 1);
+		// Update histogramm value
+		atomicAdd(&(cu_histogramm_ptr[value * HISTOGRAMMPTRWIDTH + 1]), 0.1f); // y-coord
 
 		x += stride_x;
 		y += stride_y;
 	}
+
+	__syncthreads();
 }
 
 __global__ void sobelFilterKernel(int cu_image_width, int cu_image_height, unsigned char *cu_src_image, unsigned char *cu_dest_image)
@@ -382,9 +396,9 @@ void rgbToGrayscale(unsigned char *src_image, int width, int height) {
 	cudaFree(d_src_image);
 }
 
-void sobelFilter(unsigned char *src_image, int width, int height)
+void sobelFilter(int width, int height)
 {
-	unsigned char *d_src_image, *d_dest_image_gray, *d_dest_image_sobel;
+	unsigned char *d_image_gray, *d_dest_image_sobel;
 	cudaArray *texArray;
 
 	unsigned int imgSize = width * height * sizeof(unsigned char);
@@ -400,23 +414,9 @@ void sobelFilter(unsigned char *src_image, int width, int height)
 		exit(EXIT_FAILURE);
 	}
 
-	//Copy image src to gpu
-	err = cudaMalloc((void **)&d_src_image, imgSizeRgb);
-	if (err != cudaSuccess) {
-		printf("%s in %s at line %d\n",
-			cudaGetErrorString(err), __FILE__, __LINE__);
-		exit(EXIT_FAILURE);
-	}
-
-	err = cudaMemcpy(d_src_image, src_image, imgSizeRgb, cudaMemcpyHostToDevice);
-	if (err != cudaSuccess) {
-		printf("%s in %s at line %d\n",
-			cudaGetErrorString(err), __FILE__, __LINE__);
-		exit(EXIT_FAILURE);
-	}
 
 	//Copy image dest to gpu
-	err = cudaMalloc((void **)&d_dest_image_gray, imgSize);
+	err = cudaMalloc((void **)&d_image_gray, imgSize);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
@@ -445,21 +445,22 @@ void sobelFilter(unsigned char *src_image, int width, int height)
 		exit(EXIT_FAILURE);
 	}
 
+	// Copy grayscale data for sobel
+	err = cudaMemcpyFromArray(d_image_gray, texArray,0 , 0, imgSize, cudaMemcpyDeviceToDevice);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
 	unsigned int threads = 16;
 	// Use a Grid with one Block containing 16x16 Threads
 	dim3 threads_per_block(threads, threads, 1);
 	//Per Grid N/16 Blocks
 	dim3 blocks_per_grid((width - 1) / threads + 1, (height - 1) / threads + 1, 1);
 
-	rgbToGrayscaleKernel <<<blocks_per_grid, threads_per_block >> >(width, height, d_src_image, d_dest_image_gray);
 
-	err = cudaDeviceSynchronize();
-	if (err != cudaSuccess) {
-		fprintf(stderr, "cudaDeviceSynchronize returned error code %d after launching addKernel!\n", err);
-		exit(EXIT_FAILURE);
-	}
-
-	sobelFilterKernel <<<blocks_per_grid, threads_per_block>>>(width, height, d_dest_image_gray, d_dest_image_sobel);
+	sobelFilterKernel <<<blocks_per_grid, threads_per_block>>>(width, height, d_image_gray, d_dest_image_sobel);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -483,21 +484,17 @@ void sobelFilter(unsigned char *src_image, int width, int height)
 		exit(EXIT_FAILURE);
 	}
 
-	cudaFree(d_src_image);
-	cudaFree(d_dest_image_gray);
+	cudaFree(d_image_gray);
 	cudaFree(d_dest_image_sobel);
 };
 
-void getHistogramm(int width, int height, unsigned char *src_image)
+void getHistogramm(int width, int height)
 {
 	unsigned char *d_src_image;
-	unsigned int  *d_dest_histogramm;
 	float *vboPtr;
+	cudaArray *texArray;
 
 	unsigned int imgSize = (width * height) * sizeof(unsigned char);
-
-	unsigned int histogrammSize = HISTOGRAMMSIZE * sizeof(unsigned int);
-
 	size_t vboSize = HISTOGRAMMSIZE * 3 * sizeof(float);
 
 
@@ -519,23 +516,38 @@ void getHistogramm(int width, int height, unsigned char *src_image)
 		exit(EXIT_FAILURE);
 	}
 
-	err = cudaMemcpy(d_src_image, src_image, imgSize, cudaMemcpyHostToDevice);
+	// Texture Array
+	err = cudaGraphicsMapResources(1, &texResGray);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
 
-	//Copy image dest to gpu
-	err = cudaMalloc((void **)&d_dest_histogramm, histogrammSize);
+	err = cudaGraphicsSubResourceGetMappedArray(&texArray, texResGray, 0, 0);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
 		exit(EXIT_FAILURE);
 	}
 
-	//VBO
+	// Get vbo ptr
+	err = cudaGraphicsMapResources(1, &vboRes, 0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
 	err = cudaGraphicsResourceGetMappedPointer((void **)&vboPtr, &vboSize, vboRes);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
+	// Copy grayscale data for sobel
+	err = cudaMemcpyFromArray(d_src_image, texArray, 0, 0, imgSize, cudaMemcpyDeviceToDevice);
 	if (err != cudaSuccess) {
 		printf("%s in %s at line %d\n",
 			cudaGetErrorString(err), __FILE__, __LINE__);
@@ -547,7 +559,7 @@ void getHistogramm(int width, int height, unsigned char *src_image)
 	dim3 threads_per_block(threads, threads, 1);
 	//Per Grid N/16 Blocks
 	dim3 blocks_per_grid((width - 1) / threads + 1, (height - 1) / threads + 1, 1);
-	getHistogrammKernel << <blocks_per_grid, threads_per_block >> >(width, height, d_src_image, d_dest_histogramm);
+	getHistogrammKernel << <blocks_per_grid, threads_per_block >> >(width, height, d_src_image, vboPtr);
 
 	// cudaDeviceSynchronize waits for the kernel to finish, and returns
 	// any errors encountered during the launch.
@@ -557,8 +569,21 @@ void getHistogramm(int width, int height, unsigned char *src_image)
 		exit(EXIT_FAILURE);
 	}
 
+	err = cudaGraphicsUnmapResources(1, &vboRes, 0);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
 
-	cudaFree(d_dest_histogramm);
+
+	err = cudaGraphicsUnmapResources(1, &texResGray);
+	if (err != cudaSuccess) {
+		printf("%s in %s at line %d\n",
+			cudaGetErrorString(err), __FILE__, __LINE__);
+		exit(EXIT_FAILURE);
+	}
+
 	cudaFree(d_src_image);
 };
 
@@ -568,7 +593,7 @@ void displayGrayscaleImage(void) {
 }
 
 void applySobelFilter(void) {
-	sobelFilter(currFrame.data, currFrame.cols, currFrame.rows);
+	sobelFilter(currFrame.cols, currFrame.rows);
 }
 
 void displayColorImage(void) {
@@ -576,7 +601,7 @@ void displayColorImage(void) {
 }
 
 void displayHistogramm(void) {
-
+	getHistogramm(currFrame.cols, currFrame.rows);
 }
 
 int cudaExecOneStep(void) {
